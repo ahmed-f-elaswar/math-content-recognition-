@@ -9,12 +9,14 @@ from .load import (
     load_textrec_model,
     load_tokenizer,
 )
+from texteller.utils.pdf import pdf2md
 
 __all__ = [
     "to_katex",
     "format_latex",
     "img2latex",
     "paragraph2md",
+    "pdf2md",
     "load_model",
     "load_tokenizer",
     "load_latexdet_model",

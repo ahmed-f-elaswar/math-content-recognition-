@@ -4,6 +4,7 @@ from .latex import change_all, remove_style, add_newlines
 from .path import mkdir, resolve_path
 from .misc import lines_dedent
 from .bbox import mask_img, bbox_merge, split_conflict, slice_from_image, draw_bboxes
+from .pdf import pdf_to_pages, pdf2md, merge_text_and_recognition
 
 __all__ = [
     "get_device",
@@ -23,4 +24,7 @@ __all__ = [
     "split_conflict",
     "slice_from_image",
     "draw_bboxes",
+    "pdf_to_pages",
+    "pdf2md",
+    "merge_text_and_recognition",
 ]

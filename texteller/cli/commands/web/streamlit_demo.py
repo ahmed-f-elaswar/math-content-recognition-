@@ -114,7 +114,7 @@ if inf_mode == "Paragraph recognition":
 
 st.markdown(HEADER_HTML, unsafe_allow_html=True)
 
-uploaded_file = st.file_uploader(" ", type=["jpg", "png"], on_change=on_file_upload)
+uploaded_file = st.file_uploader(" ", type=["jpg", "png", "pdf"], on_change=on_file_upload)
 
 paste_result = pbutton(
 	label="📋 Paste an image",
@@ -134,29 +134,57 @@ elif uploaded_file or paste_result.image_data is not None:
 	if st.session_state["UPLOADED_FILE_CHANGED"] is True:
 		st.session_state["UPLOADED_FILE_CHANGED"] = False
 
-	img = Image.open(uploaded_file)
+	# Check if uploaded file is PDF
+	is_pdf = uploaded_file.name.lower().endswith('.pdf')
+	
+	if is_pdf:
+		# Handle PDF
+		temp_dir = tempfile.mkdtemp()
+		pdf_path = os.path.join(temp_dir, "document.pdf")
+		with open(pdf_path, "wb") as f:
+			f.write(uploaded_file.read())
+		uploaded_file.seek(0)
+	else:
+		# Handle image
+		img = Image.open(uploaded_file)
 
-	temp_dir = tempfile.mkdtemp()
-	png_fpath = os.path.join(temp_dir, "image.png")
-	img.save(png_fpath, "PNG")
+		temp_dir = tempfile.mkdtemp()
+		png_fpath = os.path.join(temp_dir, "image.png")
+		img.save(png_fpath, "PNG")
 
-	with st.container(height=300):
-		img_base64 = get_image_base64(uploaded_file)
+	if not is_pdf:
+		with st.container(height=300):
+			img_base64 = get_image_base64(uploaded_file)
+
+			st.markdown(
+				IMAGE_EMBED_HTML.format(img_base64=img_base64),
+				unsafe_allow_html=True,
+			)
 
 		st.markdown(
-			IMAGE_EMBED_HTML.format(img_base64=img_base64),
+			IMAGE_INFO_HTML.format(img_height=img.height, img_width=img.width),
 			unsafe_allow_html=True,
 		)
-
-	st.markdown(
-		IMAGE_INFO_HTML.format(img_height=img.height, img_width=img.width),
-		unsafe_allow_html=True,
-	)
+	else:
+		st.info(f"📄 PDF file uploaded: {uploaded_file.name}")
 
 	st.write("")
 
-	with st.spinner("Predicting..."):
-		if inf_mode == "Formula recognition":
+	with st.spinner("Processing..." if is_pdf else "Predicting..."):
+		if is_pdf:
+			# Process PDF
+			from texteller.api import pdf2md
+			pred = pdf2md(
+				pdf_path=pdf_path,
+				latexdet_model=latexdet_model,
+				textdet_model=textdet_model,
+				textrec_model=textrec_model,
+				latexrec_model=latexrec_model,
+				tokenizer=tokenizer,
+				device=str2device(device),
+				num_beams=num_beams,
+			)
+		elif inf_mode == "Formula recognition":
 			pred = img2latex(
 				model=latexrec_model,
 				tokenizer=tokenizer,
@@ -179,24 +207,31 @@ elif uploaded_file or paste_result.image_data is not None:
 			)
 
 		st.success("Completed!", icon="✅")
-		# st.markdown(SUCCESS_GIF_HTML, unsafe_allow_html=True)
-		# st.text_area("Predicted LaTeX", pred, height=150)
-		if inf_mode == "Formula recognition":
-			st.code(pred, language="latex")
-		elif inf_mode == "Paragraph recognition":
+		
+		if is_pdf:
+			# Show PDF results
 			st.code(pred, language="markdown")
-		else:
-			raise ValueError(f"Invalid inference mode: {inf_mode}")
-
-		if inf_mode == "Formula recognition":
-			st.latex(pred)
-		elif inf_mode == "Paragraph recognition":
+			st.markdown("---")
+			st.markdown("### Rendered Output")
 			mixed_res = re.split(r"(\$\$.*?\$\$)", pred, flags=re.DOTALL)
 			for text in mixed_res:
 				if text.startswith("$$") and text.endswith("$$"):
 					st.latex(text.strip("$$"))
 				else:
 					st.markdown(text)
+		elif inf_mode == "Formula recognition":
+			st.code(pred, language="latex")
+			st.latex(pred)
+		elif inf_mode == "Paragraph recognition":
+			st.code(pred, language="markdown")
+			mixed_res = re.split(r"(\$\$.*?\$\$)", pred, flags=re.DOTALL)
+			for text in mixed_res:
+				if text.startswith("$$") and text.endswith("$$"):
+					st.latex(text.strip("$$"))
+				else:
+					st.markdown(text)
+		else:
+			raise ValueError(f"Invalid inference mode: {inf_mode}")
 
 		st.write("")
 		st.write("")

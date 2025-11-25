@@ -1,0 +1,136 @@
+Date : 2025-11-25 23:46:17
+Directory : d:\code\math-content-recognition-
+Total : 70 files,  5125 codes, 769 comments, 1158 blanks, all 7052 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| Python           |         48 |      3,812 |        743 |        861 |      5,416 |
+| Markdown         |          7 |        516 |          2 |        200 |        718 |
+| XML              |          2 |        471 |          0 |          5 |        476 |
+| YAML             |          7 |        191 |          1 |         38 |        230 |
+| reStructuredText |          2 |         65 |         15 |         38 |        118 |
+| JSON Lines       |          1 |         35 |          0 |          1 |         36 |
+| Batch            |          1 |         26 |          1 |          9 |         36 |
+| Makefile         |          1 |          9 |          7 |          5 |         21 |
+| pip requirements |          1 |          0 |          0 |          1 |          1 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                    | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                       |         70 |      5,125 |        769 |      1,158 |      7,052 |
+| . (Files)                                                                               |          2 |        173 |          1 |         78 |        252 |
+| .claude                                                                                 |          5 |        219 |          0 |         51 |        270 |
+| .claude\agents                                                                          |          2 |        196 |          0 |         41 |        237 |
+| .claude\commands                                                                        |          3 |         23 |          0 |         10 |         33 |
+| .github                                                                                 |          5 |        139 |          0 |         34 |        173 |
+| .github\workflows                                                                       |          5 |        139 |          0 |         34 |        173 |
+| assets                                                                                  |          3 |        617 |          1 |         78 |        696 |
+| docs                                                                                    |          6 |        146 |         39 |         67 |        252 |
+| docs (Files)                                                                            |          3 |         35 |          8 |         15 |         58 |
+| docs\source                                                                             |          3 |        111 |         31 |         52 |        194 |
+| examples                                                                                |          8 |        416 |         35 |         88 |        539 |
+| examples (Files)                                                                        |          1 |          7 |          0 |          4 |         11 |
+| examples\train_texteller                                                                |          7 |        409 |         35 |         84 |        528 |
+| examples\train_texteller (Files)                                                        |          2 |         81 |          7 |         17 |        105 |
+| examples\train_texteller\dataset                                                        |          1 |         35 |          0 |          1 |         36 |
+| examples\train_texteller\dataset\train                                                  |          1 |         35 |          0 |          1 |         36 |
+| examples\train_texteller\utils                                                          |          4 |        293 |         28 |         66 |        387 |
+| tests                                                                                   |          2 |         39 |         15 |         23 |         77 |
+| texteller                                                                               |         39 |      3,376 |        678 |        739 |      4,793 |
+| texteller (Files)                                                                       |          4 |         94 |         48 |         36 |        178 |
+| texteller\api                                                                           |         10 |        923 |        348 |        229 |      1,500 |
+| texteller\api (Files)                                                                   |          5 |        766 |        246 |        183 |      1,195 |
+| texteller\api\criterias                                                                 |          2 |         24 |         32 |         13 |         69 |
+| texteller\api\detection                                                                 |          3 |        133 |         70 |         33 |        236 |
+| texteller\cli                                                                           |          8 |        421 |         17 |         85 |        523 |
+| texteller\cli (Files)                                                                   |          1 |         13 |          3 |          8 |         24 |
+| texteller\cli\commands                                                                  |          7 |        408 |         14 |         77 |        499 |
+| texteller\cli\commands (Files)                                                          |          2 |         39 |          5 |          4 |         48 |
+| texteller\cli\commands\launch                                                           |          2 |        151 |          2 |         15 |        168 |
+| texteller\cli\commands\web                                                              |          3 |        218 |          7 |         58 |        283 |
+| texteller\models                                                                        |          2 |         42 |          0 |         10 |         52 |
+| texteller\paddleocr                                                                     |          6 |      1,517 |        188 |        265 |      1,970 |
+| texteller\types                                                                         |          2 |         48 |          3 |         19 |         70 |
+| texteller\utils                                                                         |          7 |        331 |         74 |         95 |        500 |
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                | language         | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| d:\code\math-content-recognition-\.claude\agents\commit-crafter.md                      | Markdown         |        146 |          0 |         19 |        165 |
+| d:\code\math-content-recognition-\.claude\agents\staged-code-reviewer.md                | Markdown         |         50 |          0 |         22 |         72 |
+| d:\code\math-content-recognition-\.claude\commands\code-review.md                       | Markdown         |          1 |          0 |          1 |          2 |
+| d:\code\math-content-recognition-\.claude\commands\fix-github-issue.md                  | Markdown         |         10 |          0 |          4 |         14 |
+| d:\code\math-content-recognition-\.claude\commands\make-commit.md                       | Markdown         |         12 |          0 |          5 |         17 |
+| d:\code\math-content-recognition-\.github\workflows\deploy-doc.yml                      | YAML             |         29 |          0 |          3 |         32 |
+| d:\code\math-content-recognition-\.github\workflows\pr-welcome.yml                      | YAML             |         33 |          0 |          9 |         42 |
+| d:\code\math-content-recognition-\.github\workflows\publish.yml                         | YAML             |         27 |          0 |          8 |         35 |
+| d:\code\math-content-recognition-\.github\workflows\python-lint.yml                     | YAML             |         22 |          0 |          6 |         28 |
+| d:\code\math-content-recognition-\.github\workflows\test.yaml                           | YAML             |         28 |          0 |          8 |         36 |
+| d:\code\math-content-recognition-\.pre-commit-config.yaml                               | YAML             |         22 |          0 |          2 |         24 |
+| d:\code\math-content-recognition-\README.md                                             | Markdown         |        151 |          1 |         76 |        228 |
+| d:\code\math-content-recognition-\assets\README_zh.md                                   | Markdown         |        146 |          1 |         73 |        220 |
+| d:\code\math-content-recognition-\assets\fire.svg                                       | XML              |        460 |          0 |          1 |        461 |
+| d:\code\math-content-recognition-\assets\logo.svg                                       | XML              |         11 |          0 |          4 |         15 |
+| d:\code\math-content-recognition-\docs\Makefile                                         | Makefile         |          9 |          7 |          5 |         21 |
+| d:\code\math-content-recognition-\docs\make.bat                                         | Batch            |         26 |          1 |          9 |         36 |
+| d:\code\math-content-recognition-\docs\requirements.txt                                 | pip requirements |          0 |          0 |          1 |          1 |
+| d:\code\math-content-recognition-\docs\source\api.rst                                   | reStructuredText |         15 |         10 |         15 |         40 |
+| d:\code\math-content-recognition-\docs\source\conf.py                                   | Python           |         46 |         16 |         14 |         76 |
+| d:\code\math-content-recognition-\docs\source\index.rst                                 | reStructuredText |         50 |          5 |         23 |         78 |
+| d:\code\math-content-recognition-\examples\client_demo.py                               | Python           |          7 |          0 |          4 |         11 |
+| d:\code\math-content-recognition-\examples\train_texteller\dataset\train\metadata.jsonl | JSON Lines       |         35 |          0 |          1 |         36 |
+| d:\code\math-content-recognition-\examples\train_texteller\train.py                     | Python           |         51 |          6 |         15 |         72 |
+| d:\code\math-content-recognition-\examples\train_texteller\train_config.yaml            | YAML             |         30 |          1 |          2 |         33 |
+| d:\code\math-content-recognition-\examples\train_texteller\utils\__init__.py            | Python           |         16 |          0 |          2 |         18 |
+| d:\code\math-content-recognition-\examples\train_texteller\utils\augraphy_pipe.py       | Python           |        140 |         17 |          9 |        166 |
+| d:\code\math-content-recognition-\examples\train_texteller\utils\functional.py          | Python           |         32 |          1 |         15 |         48 |
+| d:\code\math-content-recognition-\examples\train_texteller\utils\transforms.py          | Python           |        105 |         10 |         40 |        155 |
+| d:\code\math-content-recognition-\tests\test_globals.py                                 | Python           |         34 |         14 |         20 |         68 |
+| d:\code\math-content-recognition-\tests\test_to_katex.py                                | Python           |          5 |          1 |          3 |          9 |
+| d:\code\math-content-recognition-\texteller\__init__.py                                 | Python           |          3 |          0 |          2 |          5 |
+| d:\code\math-content-recognition-\texteller\api\__init__.py                             | Python           |         23 |          0 |          2 |         25 |
+| d:\code\math-content-recognition-\texteller\api\criterias\__init__.py                   | Python           |          2 |          0 |          3 |          5 |
+| d:\code\math-content-recognition-\texteller\api\criterias\ngram.py                      | Python           |         22 |         32 |         10 |         64 |
+| d:\code\math-content-recognition-\texteller\api\detection\__init__.py                   | Python           |          2 |          0 |          2 |          4 |
+| d:\code\math-content-recognition-\texteller\api\detection\detect.py                     | Python           |         40 |         21 |          9 |         70 |
+| d:\code\math-content-recognition-\texteller\api\detection\preprocess.py                 | Python           |         91 |         49 |         22 |        162 |
+| d:\code\math-content-recognition-\texteller\api\format.py                               | Python           |        431 |         88 |        135 |        654 |
+| d:\code\math-content-recognition-\texteller\api\inference.py                            | Python           |        174 |         67 |         17 |        258 |
+| d:\code\math-content-recognition-\texteller\api\katex.py                                | Python           |         89 |         24 |         20 |        133 |
+| d:\code\math-content-recognition-\texteller\api\load.py                                 | Python           |         49 |         67 |          9 |        125 |
+| d:\code\math-content-recognition-\texteller\cli\__init__.py                             | Python           |         13 |          3 |          8 |         24 |
+| d:\code\math-content-recognition-\texteller\cli\commands\__init__.py                    | Python           |          0 |          3 |          1 |          4 |
+| d:\code\math-content-recognition-\texteller\cli\commands\inference.py                   | Python           |         39 |          2 |          3 |         44 |
+| d:\code\math-content-recognition-\texteller\cli\commands\launch\__init__.py             | Python           |         93 |          2 |          7 |        102 |
+| d:\code\math-content-recognition-\texteller\cli\commands\launch\server.py               | Python           |         58 |          0 |          8 |         66 |
+| d:\code\math-content-recognition-\texteller\cli\commands\web\__init__.py                | Python           |          6 |          1 |          3 |         10 |
+| d:\code\math-content-recognition-\texteller\cli\commands\web\streamlit_demo.py          | Python           |        163 |          6 |         48 |        217 |
+| d:\code\math-content-recognition-\texteller\cli\commands\web\style.py                   | Python           |         49 |          0 |          7 |         56 |
+| d:\code\math-content-recognition-\texteller\constants.py                                | Python           |         19 |          7 |          8 |         34 |
+| d:\code\math-content-recognition-\texteller\globals.py                                  | Python           |         17 |         18 |          7 |         42 |
+| d:\code\math-content-recognition-\texteller\logger.py                                   | Python           |         55 |         23 |         19 |         97 |
+| d:\code\math-content-recognition-\texteller\models\__init__.py                          | Python           |          2 |          0 |          2 |          4 |
+| d:\code\math-content-recognition-\texteller\models\texteller.py                         | Python           |         40 |          0 |          8 |         48 |
+| d:\code\math-content-recognition-\texteller\paddleocr\CTCLabelDecode.py                 | Python           |        166 |         17 |         30 |        213 |
+| d:\code\math-content-recognition-\texteller\paddleocr\DBPostProcess.py                  | Python           |        169 |         17 |         36 |        222 |
+| d:\code\math-content-recognition-\texteller\paddleocr\operators.py                      | Python           |        143 |         13 |         31 |        187 |
+| d:\code\math-content-recognition-\texteller\paddleocr\predict_det.py                    | Python           |        234 |         17 |         27 |        278 |
+| d:\code\math-content-recognition-\texteller\paddleocr\predict_rec.py                    | Python           |        315 |         20 |         45 |        380 |
+| d:\code\math-content-recognition-\texteller\paddleocr\utility.py                        | Python           |        490 |        104 |         96 |        690 |
+| d:\code\math-content-recognition-\texteller\types\__init__.py                           | Python           |          6 |          0 |          7 |         13 |
+| d:\code\math-content-recognition-\texteller\types\bbox.py                               | Python           |         42 |          3 |         12 |         57 |
+| d:\code\math-content-recognition-\texteller\utils\__init__.py                           | Python           |         25 |          0 |          2 |         27 |
+| d:\code\math-content-recognition-\texteller\utils\bbox.py                               | Python           |        114 |          4 |         23 |        141 |
+| d:\code\math-content-recognition-\texteller\utils\device.py                             | Python           |         22 |         10 |         10 |         42 |
+| d:\code\math-content-recognition-\texteller\utils\image.py                              | Python           |         82 |         15 |         25 |        122 |
+| d:\code\math-content-recognition-\texteller\utils\latex.py                              | Python           |         53 |         39 |         24 |        116 |
+| d:\code\math-content-recognition-\texteller\utils\misc.py                               | Python           |          3 |          0 |          3 |          6 |
+| d:\code\math-content-recognition-\texteller\utils\path.py                               | Python           |         32 |          6 |          8 |         46 |
+| Total                                                                                   |                  |      5,125 |        769 |      1,158 |      7,052 |
++-----------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

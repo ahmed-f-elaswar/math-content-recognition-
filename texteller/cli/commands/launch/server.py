@@ -1,10 +1,19 @@
 import numpy as np
 import cv2
+import tempfile
+from pathlib import Path
 from starlette.requests import Request
 from ray import serve
 from ray.serve.handle import DeploymentHandle
-from texteller.api import load_model, load_tokenizer, img2latex
-from texteller.utils import get_device
+from texteller.api import (
+    load_model,
+    load_tokenizer,
+    img2latex,
+    load_latexdet_model,
+    load_textdet_model,
+    load_textrec_model,
+)
+from texteller.utils import get_device, pdf2md
 from texteller.globals import Globals
 from typing import Literal
 
@@ -30,6 +39,9 @@ class TexTellerServer:
 			use_onnx=use_onnx,
 		)
 		self.tokenizer = load_tokenizer(tokenizer_dir=tokenizer_dir)
+		self.latexdet_model = load_latexdet_model()
+		self.textdet_model = load_textdet_model()
+		self.textrec_model = load_textrec_model()
 		self.num_beams = num_beams
 		self.out_format = out_format
 		self.keep_style = keep_style
@@ -47,6 +59,28 @@ class TexTellerServer:
 			keep_style=self.keep_style,
 			num_beams=self.num_beams,
 		)[0]
+	
+	def predict_pdf(self, pdf_bytes: bytes) -> str:
+		# Save PDF to temp file
+		with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
+			tmp.write(pdf_bytes)
+			tmp_path = tmp.name
+		
+		try:
+			result = pdf2md(
+				pdf_path=tmp_path,
+				latexdet_model=self.latexdet_model,
+				textdet_model=self.textdet_model,
+				textrec_model=self.textrec_model,
+				latexrec_model=self.model,
+				tokenizer=self.tokenizer,
+				device=get_device(),
+				num_beams=self.num_beams,
+			)
+			return result
+		finally:
+			# Clean up temp file
+			Path(tmp_path).unlink(missing_ok=True)
 
 @serve.deployment()
 class Ingress:
@@ -55,11 +89,20 @@ class Ingress:
 
 	async def __call__(self, request: Request) -> str:
 		form = await request.form()
-		img_rb = await form["img"].read()
+		
+		# Check if it's a PDF or image
+		if "pdf" in form:
+			# PDF processing
+			pdf_bytes = await form["pdf"].read()
+			pred = await self.texteller_server.predict_pdf.remote(pdf_bytes)
+			return pred
+		else:
+			# Image processing
+			img_rb = await form["img"].read()
 
-		img_nparray = np.frombuffer(img_rb, np.uint8)
-		img_nparray = cv2.imdecode(img_nparray, cv2.IMREAD_COLOR)
-		img_nparray = cv2.cvtColor(img_nparray, cv2.COLOR_BGR2RGB)
+			img_nparray = np.frombuffer(img_rb, np.uint8)
+			img_nparray = cv2.imdecode(img_nparray, cv2.IMREAD_COLOR)
+			img_nparray = cv2.cvtColor(img_nparray, cv2.COLOR_BGR2RGB)
 
-		pred = await self.texteller_server.predict.remote(img_nparray)
-		return pred
+			pred = await self.texteller_server.predict.remote(img_nparray)
+			return pred
