@@ -43,6 +43,7 @@ TexTeller was trained with **80M image-formula pairs** (previous dataset can be 
 - [Web Demo](#-web-demo)
 - [Server](#-server)
 - [Python API](#-python-api)
+- [PDF Support](#-pdf-support)
 - [Formula Detection](#-formula-detection)
 - [Training](#️️-training)
 
@@ -107,10 +108,16 @@ TexTeller was trained with **80M image-formula pairs** (previous dataset can be 
 4. Run the following command to start inference:
 
    ```bash
-   texteller inference "/path/to/image.{jpg,png}"
+   texteller inference "/path/to/image.{jpg,png,pdf}"
    ```
 
    > See `texteller inference --help` for more details
+   
+   For PDF support, install PyMuPDF:
+   
+   ```bash
+   pip install pymupdf
+   ```
 
 ## 🌐 Web Demo
 
@@ -165,6 +172,119 @@ print(response.text)
 
 We provide several easy-to-use Python APIs for formula OCR scenarios. Please refer to our [documentation](https://oleehyo.github.io/TexTeller/) to learn about the corresponding API interfaces and usage.
 
+## 📄 PDF Support
+
+TexTeller now supports PDF documents! The system extracts text and images from PDFs, processes mathematical formulas, and combines everything in the original order.
+
+### Features
+
+- **PDF Processing**: Convert entire PDF documents to markdown with recognized formulas
+- **Text Extraction**: Preserves original PDF text when available
+- **Formula Recognition**: Detects and converts mathematical formulas to LaTeX
+- **Order Preservation**: Maintains the original document structure
+- **Multiple Interfaces**: Available in CLI, Web UI, and API server
+
+### Installation
+
+```bash
+pip install pymupdf  # Required for PDF support
+```
+
+### Usage Examples
+
+**Command Line:**
+```bash
+texteller inference document.pdf --output-file output.md
+texteller inference document.pdf --output-file output.md --num-beams 5
+```
+
+**Web Interface:**
+```bash
+texteller web
+# Upload PDF files at http://localhost:8501
+```
+
+**Python API:**
+```python
+from texteller.api import pdf2md, load_model, load_tokenizer
+from texteller.api import load_latexdet_model, load_textdet_model, load_textrec_model
+from texteller.utils import get_device
+
+# Load models
+latexrec_model = load_model()
+tokenizer = load_tokenizer()
+latexdet_model = load_latexdet_model()
+textdet_model = load_textdet_model()
+textrec_model = load_textrec_model()
+
+# Process PDF
+markdown = pdf2md(
+    pdf_path="document.pdf",
+    latexdet_model=latexdet_model,
+    textdet_model=textdet_model,
+    textrec_model=textrec_model,
+    latexrec_model=latexrec_model,
+    tokenizer=tokenizer,
+    device=get_device(),
+    num_beams=1,
+    dpi=300,
+)
+
+with open("output.md", "w", encoding="utf-8") as f:
+    f.write(markdown)
+```
+
+**API Server:**
+```python
+import requests
+
+server_url = "http://127.0.0.1:8000/predict"
+
+with open("document.pdf", 'rb') as pdf_file:
+    files = {'pdf': pdf_file}
+    response = requests.post(server_url, files=files)
+    
+print(response.text)  # Markdown output
+```
+
+### Output Format
+
+The output is markdown with:
+- Page headers (`## Page N`)
+- Original PDF text (when available)
+- Recognized content with formulas
+- Inline formulas: `$formula$`
+- Display formulas: `$$formula$$`
+
+Example:
+```markdown
+# Document: example.pdf
+
+## Page 1
+
+### Original Text
+This is a quadratic equation.
+
+### Recognized Content (with formulas)
+This is a quadratic equation: $ax^2 + bx + c = 0$
+
+The solution is:
+$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+```
+
+### Configuration
+
+- `--num-beams`: Beam search for better accuracy (default: 1)
+- `--output-file`: Save output to file
+- `--dpi`: PDF rendering resolution (default: 300)
+
+### Performance Tips
+
+- Lower DPI (150-200) for faster processing
+- Higher `num-beams` (3-5) for better accuracy
+- Use GPU for significant speedup
+- Increase DPI (300-600) for better quality on complex documents
+
 ## 🔍 Formula Detection
 
 TexTeller's formula detection model is trained on 3,415 images of Chinese materials and 8,272 images from the [IBEM dataset](https://zenodo.org/records/4757865).
@@ -211,7 +331,7 @@ Training arguments can be adjusted in [`train_config.yaml`](./examples/train_tex
 - [X] ~~Recognition of scanned images~~
 - [X] ~~Support for English and Chinese scenarios~~
 - [X] ~~Handwritten formulas support~~
-- [ ] PDF document recognition
+- [X] ~~PDF document recognition~~
 - [ ] Inference acceleration
 
 ## ⭐️ Stargazers over time

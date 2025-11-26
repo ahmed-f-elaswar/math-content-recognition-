@@ -35,6 +35,7 @@ TexTeller 使用 **8千万图像-公式对** 进行训练（前代数据集可�
 - [网页演示](#-网页演示)
 - [服务部署](#-服务部署)
 - [Python接口](#-python接口)
+- [PDF支持](#-pdf支持)
 - [公式检测](#-公式检测)
 - [模型训练](#️️-模型训练)
 
@@ -99,10 +100,16 @@ TexTeller 使用 **8千万图像-公式对** 进行训练（前代数据集可�
 4. 运行以下命令开始推理：
 
    ```bash
-   texteller inference "/path/to/image.{jpg,png}"
+   texteller inference "/path/to/image.{jpg,png,pdf}"
    ```
 
    > 更多参数请查看 `texteller inference --help`
+   
+   PDF支持需要安装PyMuPDF：
+   
+   ```bash
+   pip install pymupdf
+   ```
 
 ## 🌐 网页演示
 
@@ -157,6 +164,119 @@ print(response.text)
 
 我们为公式OCR场景提供了多个易用的Python API接口，请参考[接口文档](https://oleehyo.github.io/TexTeller/)了解对应的API接口及使用方法。
 
+## 📄 PDF支持
+
+TexTeller 现在支持PDF文档！系统可以从PDF中提取文本和图像，处理数学公式，并按原始顺序组合所有内容。
+
+### 功能特性
+
+- **PDF处理**：将整个PDF文档转换为包含识别公式的markdown
+- **文本提取**：保留PDF原始文本（如果可用）
+- **公式识别**：检测并将数学公式转换为LaTeX
+- **顺序保持**：维持原始文档结构
+- **多界面支持**：可通过CLI、Web界面和API服务器使用
+
+### 安装
+
+```bash
+pip install pymupdf  # PDF支持所需
+```
+
+### 使用示例
+
+**命令行：**
+```bash
+texteller inference document.pdf --output-file output.md
+texteller inference document.pdf --output-file output.md --num-beams 5
+```
+
+**网页界面：**
+```bash
+texteller web
+# 在 http://localhost:8501 上传PDF文件
+```
+
+**Python API：**
+```python
+from texteller.api import pdf2md, load_model, load_tokenizer
+from texteller.api import load_latexdet_model, load_textdet_model, load_textrec_model
+from texteller.utils import get_device
+
+# 加载模型
+latexrec_model = load_model()
+tokenizer = load_tokenizer()
+latexdet_model = load_latexdet_model()
+textdet_model = load_textdet_model()
+textrec_model = load_textrec_model()
+
+# 处理PDF
+markdown = pdf2md(
+    pdf_path="document.pdf",
+    latexdet_model=latexdet_model,
+    textdet_model=textdet_model,
+    textrec_model=textrec_model,
+    latexrec_model=latexrec_model,
+    tokenizer=tokenizer,
+    device=get_device(),
+    num_beams=1,
+    dpi=300,
+)
+
+with open("output.md", "w", encoding="utf-8") as f:
+    f.write(markdown)
+```
+
+**API服务器：**
+```python
+import requests
+
+server_url = "http://127.0.0.1:8000/predict"
+
+with open("document.pdf", 'rb') as pdf_file:
+    files = {'pdf': pdf_file}
+    response = requests.post(server_url, files=files)
+    
+print(response.text)  # Markdown输出
+```
+
+### 输出格式
+
+输出的markdown包含：
+- 页面标题（`## Page N`）
+- PDF原始文本（如果可用）
+- 识别的内容及公式
+- 行内公式：`$公式$`
+- 显示公式：`$$公式$$`
+
+示例：
+```markdown
+# Document: example.pdf
+
+## Page 1
+
+### Original Text
+这是一个二次方程。
+
+### Recognized Content (with formulas)
+这是一个二次方程：$ax^2 + bx + c = 0$
+
+解为：
+$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+```
+
+### 配置选项
+
+- `--num-beams`：束搜索以提高准确度（默认：1）
+- `--output-file`：将输出保存到文件
+- `--dpi`：PDF渲染分辨率（默认：300）
+
+### 性能提示
+
+- 较低DPI（150-200）处理更快
+- 较高`num-beams`（3-5）准确度更高
+- 使用GPU可显著加速
+- 复杂文档可提高DPI（300-600）以获得更好质量
+
 ## 🔍 公式检测
 
 TexTeller的公式检测模型在3415张中文资料图像和8272张[IBEM数据集](https://zenodo.org/records/4757865)图像上训练。
@@ -203,7 +323,7 @@ TexTeller的公式检测模型在3415张中文资料图像和8272张[IBEM数据�
 - [X] ~~扫描件识别支持~~
 - [X] ~~中英文场景支持~~
 - [X] ~~手写公式支持~~
-- [ ] PDF文档识别
+- [X] ~~PDF文档识别~~
 - [ ] 推理加速
 
 ## ⭐️ 项目星标
