@@ -86,11 +86,11 @@ from examples.train_texteller.utils import (
 )
 
 
-def train(model, tokenizer, train_dataset, eval_dataset, collate_fn_with_tokenizer):
+def train(model, tokenizer, train_dataset, eval_dataset, collate_fn_with_tokenizer, training_config):
 	"""Train the TexTeller model using HuggingFace Trainer.
 	
 	Sets up training arguments and trains the model on the provided datasets.
-	The training can be resumed from a checkpoint if needed.
+	After training, saves the final model and tokenizer.
 	
 	Args:
 		model: The TexTeller model to train.
@@ -98,16 +98,20 @@ def train(model, tokenizer, train_dataset, eval_dataset, collate_fn_with_tokeniz
 		train_dataset: Training dataset with preprocessed images and labels.
 		eval_dataset: Evaluation dataset for validation during training.
 		collate_fn_with_tokenizer: Data collation function with tokenizer bound.
+		training_config: Dictionary with training configuration parameters.
+	
+	Returns:
+		trainer: The HuggingFace Trainer instance after training.
 	
 	Examples:
 		>>> model = load_model()
 		>>> tokenizer = load_tokenizer()
-		>>> train(model, tokenizer, train_ds, eval_ds, collate_fn)
+		>>> trainer = train(model, tokenizer, train_ds, eval_ds, collate_fn, config)
 	
 	Notes:
 		- Training arguments are loaded from training_config
-		- Set resume_from_checkpoint to a path to resume training
 		- Model checkpoints are saved according to TrainingArguments.save_steps
+		- Final model is saved to output_dir/final_model/
 	"""
 	training_args = TrainingArguments(**training_config)
 	trainer = Trainer(
@@ -120,9 +124,23 @@ def train(model, tokenizer, train_dataset, eval_dataset, collate_fn_with_tokeniz
 	)
 
 	trainer.train(resume_from_checkpoint=None)
+	
+	# Save final model and tokenizer
+	final_model_path = f"{training_args.output_dir}/final_model"
+	print(f"\nSaving final model to: {final_model_path}")
+	trainer.save_model(final_model_path)
+	tokenizer.save_pretrained(final_model_path)
+	print(f"✓ Model and tokenizer saved successfully!")
+	
+	return trainer
 
 
 if __name__ == "__main__":
+	# Load training configuration
+	with open("train_config.yaml", 'r') as f:
+		training_config = yaml.safe_load(f)
+	
+	# Load and prepare dataset
 	dataset = load_dataset("imagefolder", data_dir="dataset")["train"]
 	dataset = dataset.filter(
 		lambda x: x["image"].height > MIN_HEIGHT and x["image"].width > MIN_WIDTH
@@ -131,8 +149,6 @@ if __name__ == "__main__":
 	dataset = dataset.flatten_indices()
 
 	tokenizer = load_tokenizer()
-	# If you want use your own tokenizer, please modify the path to your tokenizer
-	# tokenizer = load_tokenizer("/path/to/your/tokenizer")
 	filter_fn_with_tokenizer = partial(filter_fn, tokenizer=tokenizer)
 	dataset = dataset.filter(filter_fn_with_tokenizer, num_proc=8)
 
@@ -148,17 +164,18 @@ if __name__ == "__main__":
 	eval_dataset = eval_dataset.with_transform(img_inf_transform)
 	collate_fn_with_tokenizer = partial(collate_fn, tokenizer=tokenizer)
 
-	# Train from scratch
-	model = load_model()
-
-	# If you want to train from pre-trained model, please modify the path to your pre-trained checkpoint
-	# model = load_model("/path/to/your/model_checkpoint")
-
-	enable_train = True
-	# Train from scratch (this loads default pretrained weights if available)
-	model = load_model()
-
-	# If you want to train from a specific pre-trained model, uncomment and modify the path below
-	# model = load_model("/path/to/your/model_checkpoint")
-	if enable_train:
-		train(model, tokenizer, train_dataset, eval_dataset, collate_fn_with_tokenizer)
+	# Train from pretrained weights
+	# Path to your downloaded HuggingFace cache weights (run find_weights.py to locate)
+	PRETRAINED_WEIGHTS = r"C:\Users\t-aelaswar\.cache\huggingface\hub\models--OleehyO--TexTeller\snapshots\7b96df06b9d81cdb129c3bef68b7250bc3e2b0ea"
+	
+	model = load_model(PRETRAINED_WEIGHTS)
+	
+	# Start training
+	trainer = train(model, tokenizer, train_dataset, eval_dataset, collate_fn_with_tokenizer, training_config)
+	
+	print(f"\n{'='*50}")
+	print("Training Summary:")
+	print(f"  Output directory: {training_config['output_dir']}")
+	print(f"  Final model: {training_config['output_dir']}/final_model")
+	print(f"  Checkpoints: {training_config['output_dir']}/checkpoint-*")
+	print(f"{'='*50}")
