@@ -1,4 +1,41 @@
-"""CLI command for formula inference from images and PDFs."""
+"""CLI command for formula inference from images and PDFs.
+
+This module provides the command-line interface for performing OCR and LaTeX
+recognition on images and PDF files using TexTeller models.
+
+Features:
+    - Process individual images for formula or paragraph recognition
+    - Process PDF files with automatic page extraction and text combination
+    - Support for custom model and tokenizer paths
+    - Configurable output format (LaTeX or KaTeX)
+    - Optional style preservation (bold, italic, etc.)
+    - Beam search support for improved accuracy
+    - Save output to file or display in console
+
+Examples:
+    Recognize a formula from an image::
+    
+        $ texteller inference equation.png
+        Predicted LaTeX: ```
+        \\frac{1}{2}mv^2
+        ```
+    
+    Process with custom output format::
+    
+        $ texteller inference image.jpg --output-format latex
+    
+    Save output to file::
+    
+        $ texteller inference image.png --output-file result.txt
+    
+    Process PDF and save as markdown::
+    
+        $ texteller inference paper.pdf --output-file output.md
+    
+    Use beam search for better accuracy::
+    
+        $ texteller inference complex.png --num-beams 5
+"""
 
 import click
 from pathlib import Path
@@ -52,7 +89,41 @@ from texteller.utils import get_device
 	help="Number of beams for beam search",
 )
 def inference(file_path, model_path, tokenizer_path, output_format, keep_style, output_file, num_beams):
-	"""CLI command for formula inference from images and PDFs."""
+	"""Perform OCR and LaTeX recognition on images or PDF files.
+	
+	This command processes the input file and outputs the recognized LaTeX or markdown
+	content. For images, it performs direct recognition. For PDFs, it extracts images
+	from each page, performs recognition, and combines results with text content.
+	
+	Args:
+		file_path (str): Path to input file (image or PDF). Supported formats:
+			Images: .jpg, .png, .jpeg, .bmp
+			Documents: .pdf
+		model_path (str, optional): Path to custom model directory. If not provided,
+			downloads from HuggingFace repository.
+		tokenizer_path (str, optional): Path to custom tokenizer directory. If not
+			provided, downloads from HuggingFace repository.
+		output_format (str): Output format - 'latex' or 'katex'. Defaults to 'katex'.
+		keep_style (bool): Whether to preserve LaTeX styling (bold, italic, etc.).
+			Defaults to False.
+		output_file (str, optional): Path to save output file. For PDFs, saves as
+			.md file. If not provided, prints to console.
+		num_beams (int): Number of beams for beam search. Higher values improve
+			accuracy but increase computation time. Defaults to 1.
+	
+	Examples:
+		Basic image recognition::
+		
+			$ texteller inference equation.png
+		
+		PDF processing with beam search::
+		
+			$ texteller inference paper.pdf --num-beams 3 --output-file output.md
+		
+		Use custom model::
+		
+			$ texteller inference image.jpg --model-path ./my_model
+	"""
 	file_ext = Path(file_path).suffix.lower()
 	
 	if file_ext == ".pdf":

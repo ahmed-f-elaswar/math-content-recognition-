@@ -1,20 +1,91 @@
+"""N-gram repetition detection for stopping text generation.
+
+This module provides a stopping criterion that detects repeating n-grams
+during text generation, which is useful for preventing infinite loops and
+redundant output in LaTeX generation.
+
+Classes:
+    DetectRepeatingNgramCriteria: StoppingCriteria that halts generation
+        when any n-gram repeats.
+
+Examples:
+    Basic usage with a transformer model::
+    
+        from texteller.api.criterias.ngram import DetectRepeatingNgramCriteria
+        
+        # Stop if any 3-gram repeats
+        criteria = DetectRepeatingNgramCriteria(n=3)
+        
+        # Use in generation
+        output = model.generate(
+            input_ids,
+            max_length=512,
+            stopping_criteria=[criteria]
+        )
+    
+    Prevent repetitive LaTeX patterns::
+    
+        # Stop if any 4-gram (e.g., "\\frac{1}{2}") repeats
+        criteria = DetectRepeatingNgramCriteria(n=4)
+        
+        latex = model.generate(
+            image_features,
+            stopping_criteria=[criteria]
+        )
+"""
+
 import torch
 from transformers import StoppingCriteria
 
 
 class DetectRepeatingNgramCriteria(StoppingCriteria):
-    """
-    Stops generation efficiently if any n-gram repeats.
+    """Stops generation efficiently if any n-gram repeats.
 
-    This criteria maintains a set of encountered n-grams.
-    At each step, it checks if the *latest* n-gram is already in the set.
-    If yes, it stops generation. If no, it adds the n-gram to the set.
+    This criteria maintains a set of encountered n-grams and stops generation
+    when a previously seen n-gram appears again. This prevents the model from
+    generating repetitive or infinite sequences.
+    
+    The criterion checks only the latest n-gram at each generation step for
+    efficiency. If the n-gram has been seen before, generation stops immediately.
+    
+    Attributes:
+        n (int): The size of n-grams to check (e.g., 3 for trigrams).
+        seen_ngrams (set): Set of tuples representing seen n-grams.
+    
+    Examples:
+        Detect repeating trigrams::
+        
+            criteria = DetectRepeatingNgramCriteria(n=3)
+            # If sequence generates: [1, 2, 3, 4, 5, 1, 2, 3]
+            # Stops at the second occurrence of (1, 2, 3)
+        
+        Use with beam search::
+        
+            from transformers import GenerationConfig
+            
+            config = GenerationConfig(
+                max_length=512,
+                num_beams=5,
+                stopping_criteria=[DetectRepeatingNgramCriteria(n=4)]
+            )
+            
+            output = model.generate(inputs, generation_config=config)
     """
 
     def __init__(self, n: int):
-        """
+        """Initialize the n-gram repetition detector.
+        
         Args:
-            n (int): The size of the n-gram to check for repetition.
+            n (int): The size of the n-gram to check for repetition. Must be
+                positive. Common values are 3-5.
+        
+        Raises:
+            ValueError: If n is not positive.
+        
+        Examples:
+            >>> criteria = DetectRepeatingNgramCriteria(n=3)
+            >>> print(criteria.n)
+            3
         """
         if n <= 0:
             raise ValueError("n-gram size 'n' must be positive.")

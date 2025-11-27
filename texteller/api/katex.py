@@ -1,10 +1,25 @@
+"""KaTeX conversion utilities.
+
+This module provides functions to convert LaTeX formulas to KaTeX-compatible format.
+KaTeX is a fast math typesetting library for the web, which has slightly different
+syntax requirements than standard LaTeX.
+"""
+
 import re
 
 from ..utils.latex import change_all
 from .format import format_latex
 
 
-def _rm_dollar_surr(content):
+def _rm_dollar_surr(content: str) -> str:
+    """Remove dollar sign surroundings from embedded LaTeX commands.
+    
+    Args:
+        content: LaTeX string with potential $...$ surroundings
+        
+    Returns:
+        LaTeX string with dollar signs removed from appropriate contexts
+    \"\"\""}
     pattern = re.compile(r"\\[a-zA-Z]+\$.*?\$|\$.*?\$")
     matches = pattern.findall(content)
 

@@ -1,3 +1,10 @@
+"""LaTeX formula detection implementation.
+
+This module implements formula detection using an ONNX-based RT-DETR model.
+It can detect and classify formulas as isolated (display equations) or
+embedded (inline formulas) within text.
+"""
+
 from typing import List
 
 from onnxruntime import InferenceSession

@@ -1,3 +1,70 @@
+"""Training script for TexTeller model.
+
+This script demonstrates how to fine-tune or train a TexTeller model from scratch
+using the HuggingFace Transformers library. It includes data loading, preprocessing,
+and training configuration.
+
+Features:
+    - Load datasets in imagefolder format
+    - Filter images by minimum dimensions
+    - Tokenize LaTeX formulas
+    - Split data into train/eval sets
+    - Apply data augmentation for training
+    - Train with HuggingFace Trainer
+
+Dataset Format:
+    The dataset should be organized in imagefolder format::
+    
+        dataset/
+            train/
+                metadata.jsonl  # Contains image paths and LaTeX labels
+                image1.jpg
+                image2.png
+                ...
+
+Prerequisites:
+    - Install training dependencies: pip install texteller[train]
+    - Prepare your dataset in the correct format
+    - Update train_config.yaml with your training parameters
+
+Usage:
+    1. Prepare your dataset in examples/train_texteller/dataset/
+    2. Configure training parameters in train_config.yaml
+    3. Run the training script::
+    
+        $ python train.py
+
+Configuration:
+    Training parameters can be set in train_config.yaml or modified in the
+    training_config variable. Key parameters include:
+    - output_dir: Where to save model checkpoints
+    - num_train_epochs: Number of training epochs
+    - per_device_train_batch_size: Batch size per device
+    - learning_rate: Learning rate for optimizer
+    - save_steps: How often to save checkpoints
+
+Examples:
+    Train from scratch::
+    
+        model = load_model()
+        enable_train = True
+    
+    Train from pre-trained checkpoint::
+    
+        model = load_model("/path/to/checkpoint")
+        enable_train = True
+    
+    Use custom tokenizer::
+    
+        tokenizer = load_tokenizer("/path/to/tokenizer")
+
+Notes:
+    - The script filters images smaller than MIN_HEIGHT x MIN_WIDTH
+    - Data is split 90/10 for train/eval
+    - Training data uses augmentation, eval data does not
+    - Set enable_train = False to skip training (for testing)
+"""
+
 from functools import partial
 
 import yaml
@@ -20,6 +87,28 @@ from examples.train_texteller.utils import (
 
 
 def train(model, tokenizer, train_dataset, eval_dataset, collate_fn_with_tokenizer):
+	"""Train the TexTeller model using HuggingFace Trainer.
+	
+	Sets up training arguments and trains the model on the provided datasets.
+	The training can be resumed from a checkpoint if needed.
+	
+	Args:
+		model: The TexTeller model to train.
+		tokenizer: The tokenizer for processing LaTeX strings.
+		train_dataset: Training dataset with preprocessed images and labels.
+		eval_dataset: Evaluation dataset for validation during training.
+		collate_fn_with_tokenizer: Data collation function with tokenizer bound.
+	
+	Examples:
+		>>> model = load_model()
+		>>> tokenizer = load_tokenizer()
+		>>> train(model, tokenizer, train_ds, eval_ds, collate_fn)
+	
+	Notes:
+		- Training arguments are loaded from training_config
+		- Set resume_from_checkpoint to a path to resume training
+		- Model checkpoints are saved according to TrainingArguments.save_steps
+	"""
 	training_args = TrainingArguments(**training_config)
 	trainer = Trainer(
 		model,

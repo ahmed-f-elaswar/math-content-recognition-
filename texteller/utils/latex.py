@@ -1,10 +1,25 @@
+"""LaTeX string manipulation utilities.
+
+This module provides functions for modifying and cleaning LaTeX strings,
+including removing style commands, adding newlines, and replacing patterns.
+"""
+
 import re
 
 
 def _find_matching_bracket(text: str, start_index: int, open_bracket: str, close_bracket: str) -> int:
-    """
-    Finds the index of the matching closing bracket from a starting open bracket.
-    Handles nesting and escaped characters. Returns -1 if not found.
+    """Find the index of a matching closing bracket.
+    
+    Handles nested brackets and escaped characters correctly.
+    
+    Args:
+        text: The string to search in
+        start_index: Index where the opening bracket is located
+        open_bracket: The opening bracket character (e.g., '{', '(', '[')
+        close_bracket: The closing bracket character (e.g., '}', ')', ']')
+        
+    Returns:
+        Index of the matching closing bracket, or -1 if not found
     """
     if start_index >= len(text) or text[start_index] != open_bracket:
         return -1
@@ -29,10 +44,28 @@ def _find_matching_bracket(text: str, start_index: int, open_bracket: str, close
     return -1  # Unmatched bracket
 
 
-def change_all(input_str, old_inst, new_inst, old_surr_l, old_surr_r, new_surr_l, new_surr_r):
-    """
-    Recursively and efficiently replaces all occurrences of a LaTeX command
-    and its delimited content.
+def change_all(input_str: str, old_inst: str, new_inst: str, old_surr_l: str, old_surr_r: str, new_surr_l: str, new_surr_r: str) -> str:
+    """Recursively replace LaTeX commands with their delimited content.
+    
+    This function finds all occurrences of a LaTeX command with specific
+    delimiters and replaces them with a new command and delimiters.
+    It handles nested structures correctly.
+    
+    Args:
+        input_str: Input LaTeX string
+        old_inst: Old LaTeX command to find (e.g., r'\\bm')
+        new_inst: New LaTeX command to replace with
+        old_surr_l: Old left delimiter (e.g., '{')
+        old_surr_r: Old right delimiter (e.g., '}')
+        new_surr_l: New left delimiter
+        new_surr_r: New right delimiter
+        
+    Returns:
+        Modified LaTeX string with replacements applied
+        
+    Example:
+        >>> change_all(r'\\bm{text}', r'\\bm', '', '{', '}', '', '')
+        'text'
     """
     output_parts = []
     last_end = 0
@@ -67,6 +100,21 @@ def change_all(input_str, old_inst, new_inst, old_surr_l, old_surr_r, new_surr_l
 
 
 def remove_style(input_str: str) -> str:
+    """Remove style commands from LaTeX string.
+    
+    Removes common styling commands like \\bm, \\boldsymbol, \\textit,
+    \\textbf, and \\mathbf while preserving the content.
+    
+    Args:
+        input_str: LaTeX string with style commands
+        
+    Returns:
+        LaTeX string with style commands removed
+        
+    Example:
+        >>> remove_style(r'\\bm{x} + \\textit{y}')
+        'x + y'
+    """
     input_str = change_all(input_str, r"\bm", r" ", r"{", r"}", r"", r" ")
     input_str = change_all(input_str, r"\boldsymbol", r" ", r"{", r"}", r"", r" ")
     input_str = change_all(input_str, r"\textit", r" ", r"{", r"}", r"", r" ")

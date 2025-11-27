@@ -1,3 +1,51 @@
+"""Streamlit web interface for TexTeller.
+
+This module provides an interactive web application for TexTeller using Streamlit.
+It allows users to upload images or PDFs and get real-time LaTeX recognition results.
+
+Features:
+    - Upload images (jpg, png, jpeg, bmp) for recognition
+    - Upload PDF files for multi-page processing
+    - Paste images from clipboard
+    - Two recognition modes: Formula and Paragraph
+    - Configurable beam search for improved accuracy
+    - Optional style preservation
+    - Visual feedback with success/failure animations
+    - Copy results to clipboard
+    - Download results as text files
+
+Usage:
+    Start the Streamlit app::
+    
+        $ texteller web
+        # or
+        $ streamlit run streamlit_demo.py
+    
+    Then open your browser to http://localhost:8501
+
+Interface Components:
+    - File uploader: Upload images or PDFs
+    - Paste button: Paste images from clipboard
+    - Mode selector: Choose between Formula or Paragraph recognition
+    - Advanced options: Beam search, style preservation, ONNX runtime
+    - Results display: Shows recognized LaTeX/markdown with copy and download options
+
+Examples:
+    The web interface provides an intuitive UI where users can:
+    
+    1. Upload an image of a formula
+    2. Click "Recognize" button
+    3. View and copy the LaTeX result
+    4. Download the result as a text file
+    
+    For PDFs:
+    
+    1. Upload a PDF document
+    2. Select "Paragraph" mode for better context
+    3. Get markdown output with all formulas recognized
+    4. Download the complete markdown file
+"""
+
 import base64
 import io
 import os
@@ -31,22 +79,62 @@ st.set_page_config(page_title="TexTeller", page_icon="🧮")
 
 @st.cache_resource
 def get_texteller(use_onnx):
+	"""Load and cache the TexTeller model.
+	
+	Uses Streamlit's caching to load the model only once across sessions.
+	
+	Args:
+		use_onnx (bool): Whether to use ONNX runtime for inference.
+	
+	Returns:
+		The loaded TexTeller model.
+	"""
 	return load_model(use_onnx=use_onnx)
 
 @st.cache_resource
 def get_tokenizer():
+	"""Load and cache the tokenizer.
+	
+	Uses Streamlit's caching to load the tokenizer only once across sessions.
+	
+	Returns:
+		The loaded tokenizer.
+	"""
 	return load_tokenizer()
 
 @st.cache_resource
 def get_latexdet_model():
+	"""Load and cache the LaTeX detection model.
+	
+	Uses Streamlit's caching to load the model only once across sessions.
+	
+	Returns:
+		The loaded LaTeX detection model.
+	"""
 	return load_latexdet_model()
 
 @st.cache_resource()
 def get_textrec_model():
+	"""Load and cache the text recognition model.
+	
+	Uses Streamlit's caching to load the PaddleOCR text recognition model
+	only once across sessions.
+	
+	Returns:
+		The loaded text recognition model.
+	"""
 	return load_textrec_model()
 
 @st.cache_resource()
 def get_textdet_model():
+	"""Load and cache the text detection model.
+	
+	Uses Streamlit's caching to load the PaddleOCR text detection model
+	only once across sessions.
+	
+	Returns:
+		The loaded text detection model.
+	"""
 	return load_textdet_model()
 
 def get_image_base64(img_file):

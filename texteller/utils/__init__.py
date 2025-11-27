@@ -1,3 +1,14 @@
+"""Utility functions for TexTeller.
+
+This module provides various helper functions for:
+- Device detection and management
+- Image processing and transformation
+- LaTeX string manipulation
+- Path operations
+- Bounding box operations
+- PDF processing
+"""
+
 from .device import get_device, cuda_available, mps_available, str2device
 from .image import readimgs, transform
 from .latex import change_all, remove_style, add_newlines

@@ -31,7 +31,7 @@ def load_model(model_dir: str | None = None, use_onnx: bool = False) -> TexTelle
 	"""
 	return TexTeller.from_pretrained(model_dir, use_onnx=use_onnx)
 
-def load_tokenizer(tokenizer_dir: str | None = None) -> RobertaTokenizerFast:
+def load_tokenizer(tokenizer_dir: Optional[str] = None) -> RobertaTokenizerFast:
 	"""
 	Load the tokenizer for the TexTeller model.
 	This function loads the tokenizer used by the TexTeller model for
@@ -103,7 +103,7 @@ def load_textdet_model() -> predict_det.TextDetector:
 	predictor = predict_det.TextDetector(paddleocr_args)
 	return predictor
 
-def _maybe_download(url: str, dirpath: str | None = None, force: bool = False) -> Path:
+def _maybe_download(url: str, dirpath: Optional[str] = None, force: bool = False) -> Path:
 	"""
 	Download a file if it doesn't already exist.
 	Args:

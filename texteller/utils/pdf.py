@@ -21,25 +21,57 @@ _logger = get_logger()
 
 
 class PDFPage:
-    """Represents a page from a PDF with its content."""
+    """Represents a single page from a PDF document with extracted content.
+    
+    This class encapsulates both the original text content and the rendered
+    image of a PDF page. It's used during PDF-to-markdown conversion.
+    
+    Attributes:
+        page_num: Page number (1-indexed)
+        text: Text extracted directly from the PDF
+        image: Rendered page as RGB numpy array (H, W, 3)
+        recognized_content: OCR and formula recognition results (optional)
+    """
     
     def __init__(self, page_num: int, text: str, image: np.ndarray):
+        """Initialize a PDF page.
+        
+        Args:
+            page_num: Page number (1-indexed)
+            text: Extracted text from the PDF
+            image: Page rendered as RGB numpy array
+        """
         self.page_num = page_num
-        self.text = text  # extracted text
-        self.image = image  # page as image (RGB numpy array)
-        self.recognized_content = None  # will store OCR/formula recognition result
+        self.text = text
+        self.image = image
+        self.recognized_content = None
 
 
 def pdf_to_pages(pdf_path: str, dpi: int = 300) -> List[PDFPage]:
-    """
-    Convert PDF to list of pages with both text and images.
+    """Convert a PDF document to a list of page objects.
+    
+    Each page is extracted with both its text content and a high-resolution
+    image rendering. The text is useful when the PDF has selectable text,
+    while the image is used for OCR and formula recognition.
     
     Args:
-        pdf_path: Path to the PDF file
-        dpi: Resolution for rendering pages as images
+        pdf_path: Path to the PDF file to process
+        dpi: Resolution for rendering pages as images. Higher DPI produces
+             better quality images but increases processing time.
+             Recommended: 150-200 for speed, 300-600 for quality.
+             Default is 300.
         
     Returns:
-        List of PDFPage objects
+        List of PDFPage objects, one per page in the document
+        
+    Raises:
+        ImportError: If PyMuPDF (pymupdf) is not installed
+        FileNotFoundError: If the PDF file doesn't exist
+        
+    Example:
+        >>> pages = pdf_to_pages('document.pdf', dpi=300)
+        >>> print(f'Extracted {len(pages)} pages')
+        >>> print(f'Page 1 text: {pages[0].text[:100]}')
     """
     if fitz is None:
         raise ImportError(
@@ -81,20 +113,37 @@ def merge_text_and_recognition(
     recognized_text: str, 
     page_num: int
 ) -> str:
-    """
-    Merge original PDF text with recognized content.
+    """Intelligently merge original PDF text with OCR/formula recognition.
     
-    Strategy:
-    - If original text is empty or very short, use recognized text
-    - Otherwise, combine both with clear separation
+    This function combines the original extractable text from the PDF
+    (when available) with the OCR and formula recognition results.
+    The merging strategy depends on the quality of the original text:
+    
+    - If original text is substantial (>20 chars), both are included with
+      clear section headers for comparison
+    - If original text is minimal or empty (scanned PDFs), only the
+      recognized content is included
     
     Args:
-        original_text: Text extracted from PDF
-        recognized_text: Text recognized from OCR/formula recognition
-        page_num: Page number
+        original_text: Text extracted directly from the PDF
+        recognized_text: Text and formulas recognized via OCR/ML models
+        page_num: Page number for the section header
         
     Returns:
-        Combined text in markdown format
+        Formatted markdown string with appropriate headers and content
+        
+    Example:
+        >>> original = "This is a mathematical equation."
+        >>> recognized = "This is a mathematical equation: $E = mc^2$"
+        >>> result = merge_text_and_recognition(original, recognized, 1)
+        >>> print(result)
+        ## Page 1
+        
+        ### Original Text
+        This is a mathematical equation.
+        
+        ### Recognized Content (with formulas)
+        This is a mathematical equation: $E = mc^2$
     """
     result = f"## Page {page_num}\n\n"
     
@@ -123,22 +172,67 @@ def pdf2md(
     num_beams: int = 1,
     dpi: int = 300,
 ) -> str:
-    """
-    Convert entire PDF to markdown with formulas.
+    """Convert a complete PDF document to markdown with LaTeX formulas.
+    
+    This is the main entry point for PDF processing. It orchestrates the
+    entire pipeline:
+    1. Extract pages with text and images
+    2. Detect and recognize formulas on each page
+    3. Detect and recognize regular text via OCR
+    4. Merge everything into a coherent markdown document
+    
+    The resulting markdown includes:
+    - Page headers
+    - Original PDF text (when available)
+    - Recognized content with inline ($formula$) and display ($$formula$$) math
+    - Preserved reading order (top-to-bottom, left-to-right)
     
     Args:
-        pdf_path: Path to PDF file
-        latexdet_model: LaTeX detection model
-        textdet_model: Text detection model
-        textrec_model: Text recognition model
-        latexrec_model: LaTeX recognition model
-        tokenizer: Tokenizer for LaTeX model
-        device: Torch device
-        num_beams: Beam search parameter
-        dpi: Resolution for page rendering
+        pdf_path: Path to the PDF file to process
+        latexdet_model: ONNX InferenceSession for detecting LaTeX formulas
+        textdet_model: PaddleOCR TextDetector for detecting text regions
+        textrec_model: PaddleOCR TextRecognizer for recognizing text
+        latexrec_model: TexTeller model for converting formulas to LaTeX
+        tokenizer: RobertaTokenizerFast for the LaTeX recognition model
+        device: torch.device for computation (None = auto-detect)
+        num_beams: Number of beams for beam search (1 = greedy, higher = better quality)
+        dpi: Resolution for rendering PDF pages as images (150-600 recommended)
         
     Returns:
-        Complete markdown document
+        Complete markdown document as a string, with all pages processed
+        
+    Raises:
+        ImportError: If PyMuPDF is not installed
+        FileNotFoundError: If the PDF file doesn't exist
+        
+    Example:
+        >>> from texteller.api import (
+        ...     load_model, load_tokenizer, load_latexdet_model,
+        ...     load_textdet_model, load_textrec_model, pdf2md
+        ... )
+        >>> 
+        >>> # Load all required models
+        >>> latexdet = load_latexdet_model()
+        >>> textdet = load_textdet_model()
+        >>> textrec = load_textrec_model()
+        >>> latexrec = load_model()
+        >>> tokenizer = load_tokenizer()
+        >>> 
+        >>> # Convert PDF to markdown
+        >>> markdown = pdf2md(
+        ...     pdf_path='math_paper.pdf',
+        ...     latexdet_model=latexdet,
+        ...     textdet_model=textdet,
+        ...     textrec_model=textrec,
+        ...     latexrec_model=latexrec,
+        ...     tokenizer=tokenizer,
+        ...     num_beams=3,
+        ...     dpi=300
+        ... )
+        >>> 
+        >>> # Save result
+        >>> with open('output.md', 'w', encoding='utf-8') as f:
+        ...     f.write(markdown)
     """
     from texteller.api.inference import paragraph2md
     

@@ -1,3 +1,9 @@
+"""Image processing and transformation utilities.
+
+This module provides functions for reading, preprocessing, and transforming
+images for use with TexTeller models.
+"""
+
 from collections import Counter
 from typing import List, Union
 
@@ -20,8 +26,7 @@ _logger = get_logger()
 
 
 def readimgs(image_paths: list[str]) -> list[np.ndarray]:
-	"""
-	Read and preprocess a list of images from their file paths.
+	"""Read and preprocess images from file paths.
 
 	This function reads each image from the provided paths, handles different
 	bit depths (converting 16-bit to 8-bit if necessary), and normalizes color
@@ -57,11 +62,26 @@ def readimgs(image_paths: list[str]) -> list[np.ndarray]:
 
 
 def trim_white_border(image: np.ndarray) -> np.ndarray:
+	"""Remove white/background borders from an image.
+	
+	Detects the background color from image corners and crops the image
+	to remove uniform background padding. Useful for removing whitespace
+	from scanned documents or screenshots.
+	
+	Args:
+		image: RGB image as numpy array (H, W, 3) with dtype uint8
+		
+	Returns:
+		Cropped image with background borders removed
+		
+	Raises:
+		ValueError: If image is not RGB or not uint8
+	"""
 	if len(image.shape) != 3 or image.shape[2] != 3:
 		raise ValueError("Image is not in RGB format or channel is not in third dimension")
 
 	if image.dtype != np.uint8:
-		raise ValueError(f"Image should stored in uint8")
+		raise ValueError(f"Image should be stored in uint8")
 
 	corners = [tuple(image[0, 0]), tuple(image[0, -1]), tuple(image[-1, 0]), tuple(image[-1, -1])]
 	bg_color = Counter(corners).most_common(1)[0][0]
@@ -84,6 +104,17 @@ def trim_white_border(image: np.ndarray) -> np.ndarray:
 
 
 def padding(images: List[torch.Tensor], required_size: int) -> List[torch.Tensor]:
+	"""Pad images to a fixed square size.
+	
+	Adds zero-padding to the right and bottom edges to make images square.
+	
+	Args:
+		images: List of PyTorch tensors (C, H, W)
+		required_size: Target size for both height and width
+		
+	Returns:
+		List of padded images all of size (C, required_size, required_size)
+	"""
 	images = [
 		v2.functional.pad(
 			img, padding=[0, 0, required_size - img.shape[2], required_size - img.shape[1]]
@@ -94,6 +125,30 @@ def padding(images: List[torch.Tensor], required_size: int) -> List[torch.Tensor
 
 
 def transform(images: List[Union[np.ndarray, Image.Image]]) -> List[torch.Tensor]:
+	"""Transform images for TexTeller model input.
+	
+	Applies a complete preprocessing pipeline:
+	1. Convert to RGB if needed
+	2. Trim white borders
+	3. Convert to grayscale
+	4. Resize to fixed size (preserving aspect ratio)
+	5. Normalize with mean/std
+	6. Pad to square shape
+	
+	Args:
+		images: List of PIL Images or numpy arrays (RGB format)
+		
+	Returns:
+		List of preprocessed PyTorch tensors ready for model input
+		
+	Example:
+		>>> from PIL import Image
+		>>> img = Image.open('formula.png')
+		>>> tensors = transform([img])
+		>>> print(tensors[0].shape)
+		torch.Size([1, 448, 448])
+	"""
+	# Build transformation pipeline
 	general_transform_pipeline = v2.Compose(
 		[
 			v2.ToImage(),
@@ -110,7 +165,7 @@ def transform(images: List[Union[np.ndarray, Image.Image]]) -> List[torch.Tensor
 		]
 	)
 
-	assert IMG_CHANNELS == 1, "Only support grayscale images for now"
+	assert IMG_CHANNELS == 1, "Only grayscale images supported"
 	images = [
 		np.array(img.convert("RGB")) if isinstance(img, Image.Image) else img for img in images
 	]

@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
-"""
-Python implementation of tex-fmt, a LaTeX formatter.
+"""LaTeX formatting utilities.
+
+Python implementation of tex-fmt, a LaTeX formatter for consistent code style.
 Based on the Rust implementation at https://github.com/WGUNDERWOOD/tex-fmt
+
+This module provides functions to:
+- Format LaTeX code with proper indentation
+- Wrap long lines
+- Clean up whitespace and line breaks
+- Enforce consistent style
 """
 
 import re

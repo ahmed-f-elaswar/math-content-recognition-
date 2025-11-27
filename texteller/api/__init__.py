@@ -1,3 +1,13 @@
+"""Public API for TexTeller.
+
+This module exports all user-facing functions for:
+- Loading models
+- Converting images to LaTeX
+- Processing mixed text/formula images
+- Converting PDFs to markdown
+- Format conversion and detection
+"""
+
 from .detection import latex_detect
 from .format import format_latex
 from .inference import img2latex, paragraph2md

@@ -1,7 +1,13 @@
 import re
 import time
+"""Core inference functions for image and document processing.
+
+This module provides the main API functions for converting images
+and documents containing mathematical formulas to LaTeX and markdown.
+"""
+
 from collections import Counter
-from typing import Literal
+from typing import Literal, Optional, Union, List
 import cv2
 import numpy as np
 import torch
@@ -32,14 +38,14 @@ _logger = get_logger()
 def img2latex(
 	model: TexTellerModel,
 	tokenizer: RobertaTokenizerFast,
-	images: list[str] | list[np.ndarray],
-	device: torch.device | None = None,
+	images: Union[List[str], List[np.ndarray]],
+	device: Optional[torch.device] = None,
 	out_format: Literal["latex", "katex"] = "latex",
 	keep_style: bool = False,
 	max_tokens: int = MAX_TOKEN_SIZE,
 	num_beams: int = 1,
 	no_repeat_ngram_size: int = 0,
-) -> list[str]:
+) -> List[str]:
 	"""
 	Convert images to LaTeX or KaTeX formatted strings.
 	Args:
@@ -109,8 +115,8 @@ def paragraph2md(
 	textrec_model: predict_rec.TextRecognizer,
 	latexrec_model: TexTellerModel,
 	tokenizer: RobertaTokenizerFast,
-	device: torch.device | None = None,
-	num_beams=1,
+	device: Optional[torch.device] = None,
+	num_beams: int = 1,
 ) -> str:
 	"""
 	Convert an image containing both text and mathematical formulas to markdown format.

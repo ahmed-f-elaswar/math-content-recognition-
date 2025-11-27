@@ -1,33 +1,34 @@
-# Formula image(grayscale) mean and variance
-IMAGE_MEAN = 0.9545467
-IMAGE_STD = 0.15394445
+"""Constants used throughout the TexTeller package.
 
-# Vocabulary size for TexTeller
-VOCAB_SIZE = 15000
+This module defines model parameters, image processing settings,
+and URLs for downloading pre-trained models.
+"""
 
-# Fixed size for input image for TexTeller
-FIXED_IMG_SIZE = 448
+# Formula image (grayscale) normalization parameters
+IMAGE_MEAN: float = 0.9545467  # Mean value for grayscale formula images
+IMAGE_STD: float = 0.15394445  # Standard deviation for grayscale formula images
 
-# Image channel for TexTeller
-IMG_CHANNELS = 1  # grayscale image
+# Model architecture parameters
+VOCAB_SIZE: int = 15000  # Size of the LaTeX vocabulary
+FIXED_IMG_SIZE: int = 448  # Fixed input image size (height and width)
+IMG_CHANNELS: int = 1  # Number of image channels (1 for grayscale)
+MAX_TOKEN_SIZE: int = 1024  # Maximum number of tokens in generated LaTeX
 
-# Max size of token for embedding
-MAX_TOKEN_SIZE = 1024
+# Training data augmentation parameters
+MAX_RESIZE_RATIO: float = 1.15  # Maximum scaling ratio for random resizing
+MIN_RESIZE_RATIO: float = 0.75  # Minimum scaling ratio for random resizing
 
-# Scaling ratio for random resizing when training
-MAX_RESIZE_RATIO = 1.15
-MIN_RESIZE_RATIO = 0.75
+# Image validation thresholds
+MIN_HEIGHT: int = 12  # Minimum acceptable image height in pixels
+MIN_WIDTH: int = 30  # Minimum acceptable image width in pixels
 
-# Minimum height and width for input image for TexTeller
-MIN_HEIGHT = 12
-MIN_WIDTH = 30
-
-LATEX_DET_MODEL_URL = (
+# Pre-trained model URLs
+LATEX_DET_MODEL_URL: str = (
     "https://huggingface.co/TonyLee1256/texteller_det/resolve/main/rtdetr_r50vd_6x_coco.onnx"
 )
-TEXT_REC_MODEL_URL = (
+TEXT_REC_MODEL_URL: str = (
     "https://huggingface.co/OleehyO/paddleocrv4.onnx/resolve/main/ch_PP-OCRv4_server_rec.onnx"
 )
-TEXT_DET_MODEL_URL = (
+TEXT_DET_MODEL_URL: str = (
     "https://huggingface.co/OleehyO/paddleocrv4.onnx/resolve/main/ch_PP-OCRv4_det.onnx"
 )
