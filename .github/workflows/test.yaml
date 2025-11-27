@@ -29,6 +29,7 @@ jobs:
     - name: Install dependencies
       run: |
         uv sync --extra test
+        uv pip install pymupdf
 
     - name: Run tests with pytest
       run: |

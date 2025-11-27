@@ -12,6 +12,7 @@ Features
 - **Image to LaTeX Conversion**: Convert images containing LaTeX formulas to LaTeX code
 - **LaTeX Detection**: Detect and locate LaTeX formulas in mixed text/formula images
 - **Paragraph to Markdown**: Convert mixed text and formula images to Markdown format
+- **PDF to Markdown**: Extract and recognize text and formulas from PDF documents
 
 Installation
 -----------
@@ -22,6 +23,12 @@ You can install TexTeller using pip:
 
    pip install uv
    uv pip install texteller
+
+For PDF support, also install PyMuPDF:
+
+.. code-block:: bash
+
+   pip install pymupdf
 
 Quick Start
 ----------
@@ -63,6 +70,34 @@ Processing a mixed text/formula image:
        text_recognizer,
        latex_model,
        tokenizer
+   )
+
+Processing a PDF document:
+
+.. code-block:: python
+
+   from texteller import (
+       load_model, load_tokenizer, load_latexdet_model,
+       load_textdet_model, load_textrec_model, pdf2md
+   )
+
+   # Load all required models
+   latex_model = load_model()
+   tokenizer = load_tokenizer()
+   latex_detector = load_latexdet_model()
+   text_detector = load_textdet_model()
+   text_recognizer = load_textrec_model()
+
+   # Convert PDF to markdown
+   markdown = pdf2md(
+       pdf_path="path/to/document.pdf",
+       latexdet_model=latex_detector,
+       textdet_model=text_detector,
+       textrec_model=text_recognizer,
+       latexrec_model=latex_model,
+       tokenizer=tokenizer,
+       num_beams=1,
+       dpi=300
    )
 
 API Documentation

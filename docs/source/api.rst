@@ -18,6 +18,11 @@ Paragraph to Markdown Conversion
 
 .. autofunction:: texteller.api.paragraph2md
 
+PDF to Markdown Conversion
+--------------------------
+
+.. autofunction:: texteller.api.pdf2md
+
 LaTeX Detection
 ---------------
 
