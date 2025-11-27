@@ -92,21 +92,21 @@ def decode_image(img_path):
 			arr = np.random.randint(0, 255, (100, 100, 3), dtype=np.uint8)
 			img, info = decode_image(arr)
 	"""
-    if isinstance(img_path, str):
-        with open(img_path, "rb") as f:
-            im_read = f.read()
-        data = np.frombuffer(im_read, dtype="uint8")
-    else:
-        assert isinstance(img_path, np.ndarray)
-        data = img_path
+	if isinstance(img_path, str):
+		with open(img_path, "rb") as f:
+			im_read = f.read()
+		data = np.frombuffer(im_read, dtype="uint8")
+	else:
+		assert isinstance(img_path, np.ndarray)
+		data = img_path
 
-    im = cv2.imdecode(data, 1)  # BGR mode, but need RGB mode
-    im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
-    img_info = {
-        "im_shape": np.array(im.shape[:2], dtype=np.float32),
-        "scale_factor": np.array([1.0, 1.0], dtype=np.float32),
-    }
-    return im, img_info
+	im = cv2.imdecode(data, 1)  # BGR mode, but need RGB mode
+	im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
+	img_info = {
+		"im_shape": np.array(im.shape[:2], dtype=np.float32),
+		"scale_factor": np.array([1.0, 1.0], dtype=np.float32),
+	}
+	return im, img_info
 
 
 class Resize(object):

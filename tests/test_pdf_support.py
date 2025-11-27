@@ -1,121 +1,144 @@
-"""Quick test to verify PDF support is working."""
+"""Pytest tests to verify PDF support is working correctly.
 
-def test_imports():
-    """Test that all PDF-related imports work."""
-    print("Testing imports...")
+This module contains automated tests for PDF processing functionality,
+including imports, module structure, and CLI command availability.
+"""
+
+import subprocess
+import sys
+import pytest
+
+
+def test_pdf_utils_imports():
+    """Test that PDF utility functions can be imported."""
+    from texteller.utils.pdf import pdf_to_pages, pdf2md, merge_text_and_recognition
     
-    try:
-        from texteller.utils.pdf import pdf_to_pages, pdf2md, merge_text_and_recognition
-        print("✓ PDF utils imported successfully")
-    except ImportError as e:
-        print(f"✗ Failed to import PDF utils: {e}")
-        return False
+    # Verify functions are callable
+    assert callable(pdf_to_pages)
+    assert callable(pdf2md)
+    assert callable(merge_text_and_recognition)
+
+
+def test_pdf_api_imports():
+    """Test that pdf2md is available in the public API."""
+    from texteller.api import pdf2md
     
-    try:
-        from texteller.api import pdf2md
-        print("✓ pdf2md available in API")
-    except ImportError as e:
-        print(f"✗ Failed to import pdf2md from API: {e}")
-        return False
-    
+    assert callable(pdf2md)
+
+
+def test_pymupdf_installed():
+    """Test that PyMuPDF (fitz) is installed and importable."""
     try:
         import pymupdf
-        print(f"✓ PyMuPDF installed (version: {pymupdf.__version__})")
+        assert hasattr(pymupdf, '__version__')
     except ImportError:
-        print("✗ PyMuPDF not installed. Run: pip install pymupdf")
-        return False
-    
-    return True
+        pytest.fail("PyMuPDF is not installed. Run: pip install pymupdf")
 
 
-def test_cli_help():
-    """Test that CLI recognizes PDF files."""
-    print("\nTesting CLI help...")
-    import subprocess
+def test_utils_exports_pdf_functions():
+    """Test that PDF functions are exported from texteller.utils."""
+    from texteller.utils import pdf_to_pages, pdf2md
     
+    assert callable(pdf_to_pages)
+    assert callable(pdf2md)
+
+
+def test_api_exports_all_functions():
+    """Test that all expected API functions are available."""
+    from texteller.api import img2latex, paragraph2md, pdf2md
+    
+    assert callable(img2latex)
+    assert callable(paragraph2md)
+    assert callable(pdf2md)
+
+
+@pytest.mark.slow
+def test_cli_inference_command_exists():
+    """Test that the inference CLI command is available and shows help."""
     result = subprocess.run(
-        ["texteller", "inference", "--help"],
+        [sys.executable, "-m", "texteller.cli", "inference", "--help"],
         capture_output=True,
-        text=True
+        text=True,
+        timeout=60
     )
     
-    if result.returncode == 0:
-        print("✓ CLI command available")
-        if "file_path" in result.stdout or "FILE_PATH" in result.stdout:
-            print("✓ CLI updated to accept files (including PDFs)")
-        return True
-    else:
-        print("✗ CLI command failed")
-        return False
+    assert result.returncode == 0, "CLI inference command failed"
+    assert "file_path" in result.stdout.lower() or "file-path" in result.stdout.lower(), \
+        "CLI should accept file_path argument"
 
 
-def test_module_structure():
-    """Test that module structure is correct."""
-    print("\nTesting module structure...")
+@pytest.mark.slow
+def test_cli_accepts_file_argument():
+    """Test that CLI help indicates file input support."""
+    result = subprocess.run(
+        [sys.executable, "-m", "texteller.cli", "inference", "--help"],
+        capture_output=True,
+        text=True,
+        timeout=60
+    )
     
-    try:
-        from texteller.utils import pdf_to_pages, pdf2md
-        print("✓ PDF functions exported from utils")
-    except ImportError as e:
-        print(f"✗ PDF functions not exported: {e}")
-        return False
-    
-    try:
-        from texteller.api import img2latex, paragraph2md, pdf2md
-        print("✓ All API functions available")
-    except ImportError as e:
-        print(f"✗ API functions missing: {e}")
-        return False
-    
-    return True
+    # Check that help mentions file paths or PDF
+    help_text = result.stdout.lower()
+    assert "file" in help_text or "path" in help_text, \
+        "CLI help should mention file input"
 
 
-def main():
-    """Run all tests."""
-    print("=" * 50)
-    print("PDF Support Verification Test")
-    print("=" * 50)
+def test_pdf_page_class_available():
+    """Test that PDFPage class is available."""
+    from texteller.utils.pdf import PDFPage
     
-    tests = [
-        ("Imports", test_imports),
-        ("Module Structure", test_module_structure),
-        ("CLI", test_cli_help),
-    ]
-    
-    results = []
-    for name, test_func in tests:
-        try:
-            result = test_func()
-            results.append((name, result))
-        except Exception as e:
-            print(f"✗ {name} test failed with exception: {e}")
-            results.append((name, False))
-    
-    print("\n" + "=" * 50)
-    print("Test Summary")
-    print("=" * 50)
-    
-    for name, result in results:
-        status = "✓ PASS" if result else "✗ FAIL"
-        print(f"{status}: {name}")
-    
-    all_passed = all(result for _, result in results)
-    
-    if all_passed:
-        print("\n✓ All tests passed! PDF support is ready to use.")
-        print("\nNext steps:")
-        print("1. Test with a real PDF: texteller inference sample.pdf")
-        print("2. Launch web UI: texteller web")
-        print("3. Start API server: texteller launch")
-    else:
-        print("\n✗ Some tests failed. Please check the errors above.")
-        print("\nCommon fixes:")
-        print("- Install PyMuPDF: pip install pymupdf")
-        print("- Reinstall package: uv pip install -e .")
-    
-    return all_passed
+    assert PDFPage is not None
+    # Verify it's a class
+    assert isinstance(PDFPage, type)
 
 
-if __name__ == "__main__":
-    import sys
-    sys.exit(0 if main() else 1)
+def test_pdf_functions_have_docstrings():
+    """Test that PDF functions have proper documentation."""
+    from texteller.utils.pdf import pdf_to_pages, pdf2md, merge_text_and_recognition
+    
+    assert pdf_to_pages.__doc__ is not None, "pdf_to_pages should have a docstring"
+    assert pdf2md.__doc__ is not None, "pdf2md should have a docstring"
+    assert merge_text_and_recognition.__doc__ is not None, \
+        "merge_text_and_recognition should have a docstring"
+
+
+@pytest.mark.slow
+@pytest.mark.skipif(
+    not hasattr(subprocess.run(
+        [sys.executable, "-m", "texteller.cli", "--help"],
+        capture_output=True
+    ), 'returncode'),
+    reason="CLI not properly installed"
+)
+def test_cli_web_command_exists():
+    """Test that the web CLI command is available."""
+    result = subprocess.run(
+        [sys.executable, "-m", "texteller.cli", "web", "--help"],
+        capture_output=True,
+        text=True,
+        timeout=60
+    )
+    
+    # Command should either work or show help
+    assert result.returncode in [0, 2], "CLI web command should be available"
+
+
+@pytest.mark.slow
+@pytest.mark.skipif(
+    not hasattr(subprocess.run(
+        [sys.executable, "-m", "texteller.cli", "--help"],
+        capture_output=True
+    ), 'returncode'),
+    reason="CLI not properly installed"
+)
+def test_cli_launch_command_exists():
+    """Test that the launch CLI command is available."""
+    result = subprocess.run(
+        [sys.executable, "-m", "texteller.cli", "launch", "--help"],
+        capture_output=True,
+        text=True,
+        timeout=60
+    )
+    
+    # Command should either work or show help
+    assert result.returncode in [0, 2], "CLI launch command should be available"

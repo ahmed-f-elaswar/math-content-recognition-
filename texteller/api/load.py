@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 import wget
 from onnxruntime import InferenceSession
 from transformers import RobertaTokenizerFast

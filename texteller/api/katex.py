@@ -19,7 +19,7 @@ def _rm_dollar_surr(content: str) -> str:
         
     Returns:
         LaTeX string with dollar signs removed from appropriate contexts
-    \"\"\""}
+    """
     pattern = re.compile(r"\\[a-zA-Z]+\$.*?\$|\$.*?\$")
     matches = pattern.findall(content)
 
