@@ -164,11 +164,8 @@ if __name__ == "__main__":
 	eval_dataset = eval_dataset.with_transform(img_inf_transform)
 	collate_fn_with_tokenizer = partial(collate_fn, tokenizer=tokenizer)
 
-	# Train from pretrained weights
-	# Path to your downloaded HuggingFace cache weights (run find_weights.py to locate)
-	PRETRAINED_WEIGHTS = r"C:\Users\t-aelaswar\.cache\huggingface\hub\models--OleehyO--TexTeller\snapshots\7b96df06b9d81cdb129c3bef68b7250bc3e2b0ea"
-	
-	model = load_model(PRETRAINED_WEIGHTS)
+	# Load pretrained model (auto-downloads from HuggingFace if not cached)
+	model = load_model()
 	
 	# Start training
 	trainer = train(model, tokenizer, train_dataset, eval_dataset, collate_fn_with_tokenizer, training_config)
