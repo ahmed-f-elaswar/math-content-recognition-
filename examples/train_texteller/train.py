@@ -152,22 +152,43 @@ if __name__ == "__main__":
 	print(f"Loading dataset from: {dataset_path}")
 	
 	# Load and prepare dataset
-	# Load with drop_labels to handle missing images gracefully
-	try:
-		dataset = load_dataset("imagefolder", data_dir=str(dataset_path), drop_labels=False)["train"]
-	except Exception as e:
-		print(f"Error loading dataset: {e}")
-		print("Trying alternative loading method...")
-		dataset = load_dataset("imagefolder", data_dir=str(dataset_path))["train"]
+	dataset = load_dataset("imagefolder", data_dir=str(dataset_path))["train"]
 	
 	print(f"Initial dataset size: {len(dataset)} examples")
 	
-	# Filter images by dimensions
-	dataset = dataset.filter(
-		lambda x: x["image"].height > MIN_HEIGHT and x["image"].width > MIN_WIDTH,
-		load_from_cache_file=False  # Don't use cache to avoid stale data
-	)
-	print(f"After size filter: {len(dataset)} examples")
+	# Filter by checking file path exists first (to handle missing images)
+	# This avoids trying to load missing images
+	def check_valid_image(example, idx):
+		# Get image path from the example
+		image_path = example.get("image", {})
+		if hasattr(image_path, "get") and "path" in image_path:
+			file_path = image_path["path"]
+		elif hasattr(image_path, "filename"):
+			file_path = image_path.filename
+		else:
+			# If we can't get the path, try to access the image and let it fail gracefully
+			try:
+				img = example["image"]
+				return img.height > MIN_HEIGHT and img.width > MIN_WIDTH
+			except:
+				return False
+		
+		# Check if file exists
+		if not os.path.exists(file_path):
+			if idx % 100 == 0:  # Print occasionally to avoid spam
+				print(f"Skipping missing image at index {idx}")
+			return False
+		
+		# Now check dimensions
+		try:
+			img = example["image"]
+			return img.height > MIN_HEIGHT and img.width > MIN_WIDTH
+		except Exception as e:
+			print(f"Error loading image at index {idx}: {e}")
+			return False
+	
+	dataset = dataset.filter(check_valid_image, with_indices=True, load_from_cache_file=False)
+	print(f"After filtering: {len(dataset)} examples")
 	
 	dataset = dataset.shuffle(seed=42)
 	dataset = dataset.flatten_indices()
