@@ -152,18 +152,23 @@ if __name__ == "__main__":
 	print(f"Loading dataset from: {dataset_path}")
 	
 	# Load and prepare dataset
-	dataset = load_dataset("imagefolder", data_dir=str(dataset_path))["train"]
+	# Load with drop_labels to handle missing images gracefully
+	try:
+		dataset = load_dataset("imagefolder", data_dir=str(dataset_path), drop_labels=False)["train"]
+	except Exception as e:
+		print(f"Error loading dataset: {e}")
+		print("Trying alternative loading method...")
+		dataset = load_dataset("imagefolder", data_dir=str(dataset_path))["train"]
 	
-	# Filter valid images (skip missing files and check dimensions)
-	def is_valid_image(example):
-		try:
-			img = example["image"]
-			return img.height > MIN_HEIGHT and img.width > MIN_WIDTH
-		except Exception as e:
-			print(f"Skipping invalid image: {e}")
-			return False
+	print(f"Initial dataset size: {len(dataset)} examples")
 	
-	dataset = dataset.filter(is_valid_image)
+	# Filter images by dimensions
+	dataset = dataset.filter(
+		lambda x: x["image"].height > MIN_HEIGHT and x["image"].width > MIN_WIDTH,
+		load_from_cache_file=False  # Don't use cache to avoid stale data
+	)
+	print(f"After size filter: {len(dataset)} examples")
+	
 	dataset = dataset.shuffle(seed=42)
 	dataset = dataset.flatten_indices()
 
