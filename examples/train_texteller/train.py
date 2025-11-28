@@ -136,12 +136,23 @@ def train(model, tokenizer, train_dataset, eval_dataset, collate_fn_with_tokeniz
 
 
 if __name__ == "__main__":
-	# Load training configuration
-	with open("train_config.yaml", 'r') as f:
+	import os
+	from pathlib import Path
+	
+	# Get script directory
+	script_dir = Path(__file__).parent
+	
+	# Load training configuration from script directory
+	config_file = script_dir / "train_config.yaml"
+	with open(config_file, 'r') as f:
 		training_config = yaml.safe_load(f)
 	
+	# Load dataset from script directory subfolder
+	dataset_path = script_dir / "dataset"
+	print(f"Loading dataset from: {dataset_path}")
+	
 	# Load and prepare dataset
-	dataset = load_dataset("imagefolder", data_dir="dataset")["train"]
+	dataset = load_dataset("imagefolder", data_dir=str(dataset_path))["train"]
 	dataset = dataset.filter(
 		lambda x: x["image"].height > MIN_HEIGHT and x["image"].width > MIN_WIDTH
 	)
