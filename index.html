@@ -398,6 +398,7 @@ document.write(`
 <li><p><strong>Image to LaTeX Conversion</strong>: Convert images containing LaTeX formulas to LaTeX code</p></li>
 <li><p><strong>LaTeX Detection</strong>: Detect and locate LaTeX formulas in mixed text/formula images</p></li>
 <li><p><strong>Paragraph to Markdown</strong>: Convert mixed text and formula images to Markdown format</p></li>
+<li><p><strong>PDF to Markdown</strong>: Extract and recognize text and formulas from PDF documents</p></li>
 </ul>
 </section>
 <section id="installation">
@@ -405,6 +406,10 @@ document.write(`
 <p>You can install TexTeller using pip:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>uv
 uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>texteller
+</pre></div>
+</div>
+<p>For PDF support, also install PyMuPDF:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pymupdf
 </pre></div>
 </div>
 </section>
@@ -442,6 +447,32 @@ uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </s
     <span class="n">text_recognizer</span><span class="p">,</span>
     <span class="n">latex_model</span><span class="p">,</span>
     <span class="n">tokenizer</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Processing a PDF document:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">texteller</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">load_model</span><span class="p">,</span> <span class="n">load_tokenizer</span><span class="p">,</span> <span class="n">load_latexdet_model</span><span class="p">,</span>
+    <span class="n">load_textdet_model</span><span class="p">,</span> <span class="n">load_textrec_model</span><span class="p">,</span> <span class="n">pdf2md</span>
+<span class="p">)</span>
+
+<span class="c1"># Load all required models</span>
+<span class="n">latex_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">()</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">load_tokenizer</span><span class="p">()</span>
+<span class="n">latex_detector</span> <span class="o">=</span> <span class="n">load_latexdet_model</span><span class="p">()</span>
+<span class="n">text_detector</span> <span class="o">=</span> <span class="n">load_textdet_model</span><span class="p">()</span>
+<span class="n">text_recognizer</span> <span class="o">=</span> <span class="n">load_textrec_model</span><span class="p">()</span>
+
+<span class="c1"># Convert PDF to markdown</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">pdf2md</span><span class="p">(</span>
+    <span class="n">pdf_path</span><span class="o">=</span><span class="s2">&quot;path/to/document.pdf&quot;</span><span class="p">,</span>
+    <span class="n">latexdet_model</span><span class="o">=</span><span class="n">latex_detector</span><span class="p">,</span>
+    <span class="n">textdet_model</span><span class="o">=</span><span class="n">text_detector</span><span class="p">,</span>
+    <span class="n">textrec_model</span><span class="o">=</span><span class="n">text_recognizer</span><span class="p">,</span>
+    <span class="n">latexrec_model</span><span class="o">=</span><span class="n">latex_model</span><span class="p">,</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span>
 <span class="p">)</span>
 </pre></div>
 </div>

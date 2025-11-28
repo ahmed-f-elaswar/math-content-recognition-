@@ -311,13 +311,28 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for texteller.api.katex</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span></span><span class="sd">&quot;&quot;&quot;KaTeX conversion utilities.</span>
+
+<span class="sd">This module provides functions to convert LaTeX formulas to KaTeX-compatible format.</span>
+<span class="sd">KaTeX is a fast math typesetting library for the web, which has slightly different</span>
+<span class="sd">syntax requirements than standard LaTeX.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.latex</span><span class="w"> </span><span class="kn">import</span> <span class="n">change_all</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.format</span><span class="w"> </span><span class="kn">import</span> <span class="n">format_latex</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">_rm_dollar_surr</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_rm_dollar_surr</span><span class="p">(</span><span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove dollar sign surroundings from embedded LaTeX commands.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        content: LaTeX string with potential $...$ surroundings</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        LaTeX string with dollar signs removed from appropriate contexts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">[a-zA-Z]+\$.*?\$|\$.*?\$&quot;</span><span class="p">)</span>
     <span class="n">matches</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
 

@@ -311,7 +311,14 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for texteller.api.detection.detect</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span></span><span class="sd">&quot;&quot;&quot;LaTeX formula detection implementation.</span>
+
+<span class="sd">This module implements formula detection using an ONNX-based RT-DETR model.</span>
+<span class="sd">It can detect and classify formulas as isolated (display equations) or</span>
+<span class="sd">embedded (inline formulas) within text.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">onnxruntime</span><span class="w"> </span><span class="kn">import</span> <span class="n">InferenceSession</span>
 
