@@ -153,9 +153,17 @@ if __name__ == "__main__":
 	
 	# Load and prepare dataset
 	dataset = load_dataset("imagefolder", data_dir=str(dataset_path))["train"]
-	dataset = dataset.filter(
-		lambda x: x["image"].height > MIN_HEIGHT and x["image"].width > MIN_WIDTH
-	)
+	
+	# Filter valid images (skip missing files and check dimensions)
+	def is_valid_image(example):
+		try:
+			img = example["image"]
+			return img.height > MIN_HEIGHT and img.width > MIN_WIDTH
+		except Exception as e:
+			print(f"Skipping invalid image: {e}")
+			return False
+	
+	dataset = dataset.filter(is_valid_image)
 	dataset = dataset.shuffle(seed=42)
 	dataset = dataset.flatten_indices()
 
