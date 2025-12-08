@@ -1,0 +1,69 @@
+name: Deploy Texteller Web to Azure Container Apps
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  ACR_NAME: mathcontentregistry
+  RESOURCE_GROUP: math-content-recognition-rg
+  CONTAINERAPP_NAME: texteller-app
+  CONTAINER_ENV_NAME: texteller-env
+  LOCATION: westeurope
+  IMAGE_NAME: texteller-app
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Login to Azure Container Registry
+        run: |
+          az acr login --name ${{ env.ACR_NAME }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:latest .
+          docker build -t ${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }} .
+
+      - name: Push Docker image to ACR
+        run: |
+          docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:latest
+          docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Deploy to Azure Container Apps
+        run: |
+          az containerapp update \
+            --name ${{ env.CONTAINERAPP_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --image ${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:latest
+
+      - name: Get Container App URL
+        run: |
+          APP_URL=$(az containerapp show \
+            --name ${{ env.CONTAINERAPP_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --query properties.configuration.ingress.fqdn \
+            --output tsv)
+          echo "🚀 Application deployed successfully!"
+          echo "📍 Container App URL: https://$APP_URL"
+          echo "APP_URL=https://$APP_URL" >> $GITHUB_ENV
+
+      - name: Deployment Summary
+        run: |
+          echo "### ✅ Deployment Successful" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Image**: ${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:latest" >> $GITHUB_STEP_SUMMARY
+          echo "- **Container App**: ${{ env.CONTAINERAPP_NAME }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Resource Group**: ${{ env.RESOURCE_GROUP }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **URL**: ${{ env.APP_URL }}" >> $GITHUB_STEP_SUMMARY
